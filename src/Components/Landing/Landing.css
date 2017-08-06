@@ -1,0 +1,79 @@
+.landing-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(45deg, #B479C3, #6CD5F9); }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: auto;
+  width: 100%;
+  height: 200px;
+  font-family: 'Josefin Sans';
+  font-size: 36px;
+  font-weight: 100;
+  color: white;
+  text-shadow: 0px 0px 30px black; }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    transform: rotate(-10deg);
+    box-shadow: 0px 0px 10px white; }
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 100px white;
+    background-color: rgba(255, 255, 255, 0.9); } }
+
+.logobox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: auto;
+  height: 300px; }
+  .logobox .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+    height: 130px;
+    width: 130px;
+    animation: pulse 1s infinite alternate;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 0px 100px white; }
+    .logobox .logo img {
+      margin: auto;
+      height: 90px;
+      width: 90px; }
+
+.account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: auto;
+  margin-top: 38px;
+  height: 200px; }
+  .account button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+    background: transparent;
+    flex-direction: row;
+    height: 100px;
+    width: 100%;
+    border: none;
+    border-top: solid 1px white;
+    font-family: 'Josefin Sans';
+    font-weight: 200;
+    color: white;
+    font-size: 18px; }
