@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    balance INT,
+    email TEXT,
+    balance INT
+    
 );
-INSERT INTO users (name,balance) VALUES ('Logan', 0),('George', 0),('Im', 0)
+INSERT INTO users ( name, email, balance ) VALUES ('Logan','logan@gmail.com' 0),('George','George@gmail.com', 0),('Im','Im@gmail.com', 0)
