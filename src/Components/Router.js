@@ -4,9 +4,9 @@ import Landing from './Landing/Landing';
 import MainPage from './MainPage/MainPage';
 export default (
     <Switch>
-        <Route component= { MainPage } path="/main" />
+        {/* <Route component= { MainPage } path="/main" /> */}
         
-        {/*<Route component= { Landing } exact path="/" />*/}
+         <Route component= { Landing } exact path="/" /> 
         {/*/*<Route component= { Login } path="/login" />*/}
         {/*<Route component= { FriendList } path="/friendlist" /> 
         <Route component= { EventList } path="/eventlist" />

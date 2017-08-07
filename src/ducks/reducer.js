@@ -1,7 +1,8 @@
 const initialState = {
-    inputValue: '',
+    value: '',
     event: [],
     friends: [],
+    
 }
 
 const HANDLEINPUTCHANGE = 'HANDLEINPUTCHANGE';
