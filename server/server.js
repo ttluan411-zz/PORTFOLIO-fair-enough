@@ -21,6 +21,13 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+massive(MASSIVE_URI)
+.then( db => {
+  app.set('db', db);
+  db.init.create_table();
+}).catch(err => console.log(err))
+app.listen(port, console.log(`listening on port ${port}`));
+
 //SET UP PASSPORT
 passport.use(new Auth0Strategy({
   domain: key.domain,
@@ -30,15 +37,15 @@ passport.use(new Auth0Strategy({
 }, function(accessToken, refreshToken, extraParams, profile, done) {
   //GO TO DB TO FIND AND CREATE USER
   let db = app.get('db')
-  ,authId = profile.id
+  ,auth0Id = profile.id
   ,email = profile.emails[0].value
-  ,givenName = profile.name.givenname || null
-  ,familyName = profile.name.familyname || null
-  ,nickName = profile.nickname || null
+  ,givenName = profile.name.givenName || "anonymous"
+  ,familyName = profile.name.familyName || "anonymous"
+  ,profileName = profile.nickname || "anonymous"
   ,picture = profile.picture;
-  db.users.get_user([authId]).then(res=> {
+  db.users.get_user([auth0Id]).then(res=> {
     if(!res.length){
-        db.users.create_user([authId, email, givenName, familyName,nickname, picture])
+        db.users.create_user([auth0Id, givenName, familyName, email, profileName])
         .then((userCreated) => {
               return done(null, profile)
             }).catch( (e) => console.log(e))
@@ -49,7 +56,7 @@ passport.use(new Auth0Strategy({
 }));
 
 app.get('/auth/', passport.authenticate('auth0'))
-app.get('/auth/callback', passport.authenticate('auth0', {successRedirect: '/me'}))
+app.get('/auth/callback', passport.authenticate('auth0', {successRedirect: 'http://localhost:3000/main'}))
 
 passport.serializeUser(function(profileToSession, done) {
   done(null, profileToSession); // PUTS 2ND ARGUMENT ON SESSION
@@ -59,15 +66,6 @@ passport.deserializeUser(function(profileFromSession, done) {
   done(null, profileFromSession); //PUTS 2ND ARGUMENT ON REQ.USER
 });
 
-app.get('/me', function(req,res){
+app.get('/api/main', function(req,res){
     res.send(req.user)
 })
-
-
-// massive({connectionString:MASSIVE_URI})
-massive('postgres://smrgpejy:cdyB9uOd1Gh_dCyfrf68-UewysXJOHQj@pellefant.db.elephantsql.com:5432/smrgpejy')
-.then( db => {
-  app.set('db', db);
-  db.create_table();
-}).catch(err => console.log(err))
-app.listen(port, console.log(`listening on port ${port}`));

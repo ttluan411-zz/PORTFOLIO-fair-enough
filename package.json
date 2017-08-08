@@ -1,9 +1,10 @@
 {
   "name": "splitapp",
   "version": "0.1.0",
-  "main":"./server/server",
+  "main": "./server/server",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.3",
@@ -17,7 +18,8 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-scripts": "1.0.10",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-promise-middleware": "^4.3.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
@@ -31,5 +33,6 @@
   "devDependencies": {
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
