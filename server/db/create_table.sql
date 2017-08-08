@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
     name TEXT,
     email TEXT,
     auth0Id TEXT
-);
+)
 
 CREATE TABLE IF NOT EXISTS event (
     id SERIAL PRIMARY KEY,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS event (
 CREATE TABLE IF NOT EXISTS balanceSheet (
     id SERIAL PRIMARY KEY,
     userBalance INTEGER,
-    
+
 )
 
 CREATE TABLE IF NOT EXISTS payment_request (

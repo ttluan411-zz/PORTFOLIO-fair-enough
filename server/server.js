@@ -29,8 +29,23 @@ passport.use(new Auth0Strategy({
   callbackURL: 'http://localhost:3001/auth/callback'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
   //GO TO DB TO FIND AND CREATE USER
-  console.log(profile.id)
-  return done(null, profile); // GOES TO SERIALIZE-USER WHEN U INVOKE DONE
+  let db = app.get('db')
+  ,authId = profile.id
+  ,email = profile.emails[0].value
+  ,givenName = profile.name.givenname || null
+  ,familyName = profile.name.familyname || null
+  ,nickName = profile.nickname || null
+  ,picture = profile.picture;
+  db.users.get_user([authId]).then(res=> {
+    if(!res.length){
+        db.users.create_user([authId, email, givenName, familyName,nickname, picture])
+        .then((userCreated) => {
+              return done(null, profile)
+            }).catch( (e) => console.log(e))
+      } else {
+        return done(null, profile);
+      }
+    }).catch( err => console.log( err )) // GOES TO SERIALIZE-USER WHEN U INVOKE DONE
 }));
 
 app.get('/auth/', passport.authenticate('auth0'))
