@@ -7,7 +7,7 @@ import './MainPage.css';
 export default class MainPage extends Component {
     constructor(){
         super();
-
+        
 
     }
     render(){

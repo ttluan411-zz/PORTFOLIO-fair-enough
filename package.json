@@ -1,6 +1,7 @@
 {
   "name": "splitapp",
   "version": "0.1.0",
+  "main":"./server/server",
   "private": true,
   "dependencies": {
     "body-parser": "^1.17.2",

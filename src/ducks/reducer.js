@@ -1,28 +1,37 @@
 const initialState = {
-    value: '',
-    event: [],
-    friends: [],
+    eventInputValue: '',
+    amountInputValue: '',
+    amount: 0,
+    events: [Moab, Vegas],
+    friends: [George, Im, Willis],
     
 }
 
-const HANDLEINPUTCHANGE = 'HANDLEINPUTCHANGE';
+const EVENTINPUT='EVENTINPUT'
+     ,AMOUNTINPUT='AMOUNTINPUT'
+     ,SAVEEVENT='SAVEEVENT'
+     ,DELETEEVENT='DELETEEVENT';
 
 export default function (state=initialState, action){
     switch (action.type) {
-        case HANDLEINPUTCHANGE:
+        case EVENTINPUT:
             console.log('handled Input')
             return Object.assign({}, state, {
-                value: action.payload
+                eventInputValue: action.payload
         })
+        // case AMOUNTINPUT:
+        //     return Object.assign({}, state, {
+        //         value: action.payload
+        //     })
         default:
             return state
     }
 }
 
-export function handleInputChange(e){
+export function eventInput(e){
     console.log(e.target.value)
     return {
-        type: HANDLEINPUTCHANGE,
+        type: EVENTINPUT,
         payload: e.target.value
     }
 }
