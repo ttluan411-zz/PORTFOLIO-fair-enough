@@ -3,18 +3,21 @@ CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name TEXT,
     email TEXT,
-    balance INT,
     auth0Id TEXT
 );
 
 CREATE TABLE IF NOT EXISTS event (
     id SERIAL PRIMARY KEY,
     eventName TEXT,
-    timeOccur TEXT,
-    balance INTEGER,
+    eventTime TEXT,
+    eventBalance INTEGER,
     CONSTRAINT creatorId FOREIGN KEY(id) REFERENCES users(id)
 );
-
+CREATE TABLE IF NOT EXISTS balanceSheet (
+    id SERIAL PRIMARY KEY,
+    userBalance INTEGER,
+    
+)
 
 CREATE TABLE IF NOT EXISTS payment_request (
     id SERIAL PRIMARY KEY,
