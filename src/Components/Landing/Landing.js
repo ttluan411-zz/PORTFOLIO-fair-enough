@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import './Landing.css';
 
 export default function Landing(props){
@@ -12,16 +12,17 @@ export default function Landing(props){
                 </div>
             </div>
             <div className="account">
-                <button className="log-in"> 
+            <a className="Login-button" href="http://localhost:3001/auth">
+                <button className="log-in">
                     SIGN IN
                     {/*<div className="arrow-button"><img src="./a.png" alt="arrow"/></div>*/}
                 </button>
-                <button className="log-in"> 
+            </a>
+                <button className="log-in">
                     NEW ACCOUNT
                     {/*<div className="arrow-button"><img src="./a.png" alt="arrow"/></div>                    */}
                 </button>
             </div>
         </div>
-    )    
+    )
 }
-    

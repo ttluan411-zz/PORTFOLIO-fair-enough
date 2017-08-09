@@ -16,22 +16,32 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 100px;
+      height: 80px;
       font-family: 'Josefin Sans';
       font-size: 20px;
       font-weight: 100;
       color: white;
       text-shadow: 0px 0px 30px black; }
+    .mainpage-wrapper .mainpage-header .profile-box {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center; }
+      .mainpage-wrapper .mainpage-header .profile-box img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        box-shadow: 1px 1px 5px black; }
     .mainpage-wrapper .mainpage-header .balance-bar {
       border-bottom: 1px white solid;
       border-top: 1px white solid;
       display: flex;
-      height: 80px;
+      height: 70px;
       width: 100%;
       justify-content: space-between;
       opacity: 0.9; }
       .mainpage-wrapper .mainpage-header .balance-bar .small-box {
-        height: 80px;
+        height: 70px;
         flex: 1;
         display: flex;
         flex-direction: column;

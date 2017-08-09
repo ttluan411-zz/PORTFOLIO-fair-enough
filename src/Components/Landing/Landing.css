@@ -77,3 +77,10 @@
     font-weight: 200;
     color: white;
     font-size: 18px; }
+
+.log-in {
+  width: 100vw !important;
+  border-top: 1px white solid; }
+
+a {
+  text-decoration: none; }

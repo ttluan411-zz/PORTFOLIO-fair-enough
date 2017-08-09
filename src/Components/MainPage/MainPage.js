@@ -6,15 +6,23 @@ import './MainPage.css';
 
 class MainPage extends Component {
 
+  componentDidMount(){
+    // console.log(this.props.getUser())
+    this.props.getUser()
+  }
     render(){
-
-      const {
+      const{
         user
       } = this.props
+
         return (
             <div className="mainpage-wrapper">
                 <div className="mainpage-header">
                     <div className="mainpage-logo">F A I R E N O U G H</div>
+                    <div className="profile-box">
+                      <img src={this.props.user.picture} />
+                      <p>{this.props.user.firstName}</p>
+                    </div>
                     <div className="balance-bar">
                         <div className="small-box">
                             <div className="top-letters">You owe:</div>
@@ -31,7 +39,7 @@ class MainPage extends Component {
                     </div>
                 </div>
                 <div className="mainpage-body">
-                  <div>{this.props.user}</div>
+                  <div>{}</div>
                 </div>
                 <div className="mainpage-footer">
                     <button className="add-button"></button>

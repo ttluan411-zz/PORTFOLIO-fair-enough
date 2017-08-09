@@ -17,12 +17,10 @@ const EVENTINPUT='EVENTINPUT'
 export default function (state=initialState, action){
     switch (action.type) {
         case EVENTINPUT:
-            console.log('handled Input')
             return Object.assign({}, state, {
                 eventInputValue: action.payload
         })
-        case GETUSER:
-          console.log('axios getting user')
+        case GETUSER + '_FULFILLED':
           return Object.assign({},state, {
             user: action.payload
           })
@@ -36,7 +34,8 @@ export default function (state=initialState, action){
 }
 
 export function getUser(){
-  let promise = axios.get('/api/main').then(res => res.data);
+  let promise = axios.get('/api/main').then(res => res.data)
+  console.log(promise)
   return {
     type: GETUSER,
     payload: promise
