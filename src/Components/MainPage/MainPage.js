@@ -21,7 +21,7 @@ class MainPage extends Component {
                     <div className="mainpage-logo">F A I R E N O U G H</div>
                     <div className="profile-box">
                       <img src={user.picture} />
-                      <p>{user.firstName}</p>
+                      <p style={{"background-color":"pink"}}>{user.given_name}</p>
                     </div>
                     <div className="balance-bar">
                         <div className="small-box">

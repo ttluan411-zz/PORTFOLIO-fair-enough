@@ -42,10 +42,12 @@ passport.use(new Auth0Strategy({
   ,givenName = profile.name.givenName || "anonymous"
   ,familyName = profile.name.familyName || "anonymous"
   ,profileName = profile.nickname || "anonymous"
-  ,picture = profile.picture;
+  ,picture = profile.picture
+  ,userbalance = 0
+
   db.users.get_user([auth0Id]).then(res=> {
     if(!res.length){
-        db.users.create_user([auth0Id, givenName, familyName, email, profileName])
+        db.users.create_user([auth0Id, givenName, familyName, email, profileName, picture, userbalance])
         .then((userCreated) => {
               return done(null, profile)
             }).catch( (e) => console.log(e))

@@ -3,8 +3,8 @@ const initialState = {
     eventInputValue: '',
     amountInputValue: '',
     amount: 0,
-    events: ['Moab', 'Vegas'],
-    friends: ['George', 'Im', 'Willis'],
+    events: [],
+    friends: [],
     user: {}
 }
 

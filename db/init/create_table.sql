@@ -5,79 +5,52 @@
 --
 -- DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE IF NOT EXISTS users (
-	userId serial NOT NULL,
+	userId SERIAL PRIMARY KEY,
 	givenName TEXT NOT NULL,
-	familyName serial NOT NULL,
+	familyName TEXT NOT NULL,
 	email TEXT NOT NULL,
-	profileName serial NOT NULL,
+	profileName TEXT NOT NULL,
 	picture TEXT,
-	authId TEXT NOT NULL,
-	userBalance integer NOT NULL,
-	CONSTRAINT users_pk PRIMARY KEY (userId)
-) WITH (
-  OIDS=FALSE
+	auth0Id TEXT NOT NULL,
+	userBalance INTEGER NOT NULL
 );
-
 
 -- DROP TABLE IF EXISTS event CASCADE;
 CREATE TABLE IF NOT EXISTS event (
-	event_id serial NOT NULL,
-	eventName serial NOT NULL,
-	eventTime serial NOT NULL,
-	Expense integer NOT NULL,
-	averagePerPax serial NOT NULL,
-	headCount integer NOT NULL,
-	CONSTRAINT event_pk PRIMARY KEY (event_id)
-) WITH (
-  OIDS=FALSE
+	eventId SERIAL PRIMARY KEY,
+	eventName TEXT NOT NULL,
+	eventTime TIMESTAMP  NOT NULL,
+	Expense INTEGER NOT NULL,
+	averagePerPax INTEGER NOT NULL,
+	headCount INTEGER NOT NULL
 );
-
 
 -- DROP TABLE IF EXISTS bills CASCADE;
 CREATE TABLE IF NOT EXISTS bills (
-	bill_id serial NOT NULL,
-	creatorId serial NOT NULL,
-	event_id integer NOT NULL,
-	amount integer NOT NULL,
+	billId SERIAL PRIMARY KEY,
+	amount INTEGER NOT NULL,
 	createTime TIMESTAMP NOT NULL,
 	billsName TEXT NOT NULL,
-	CONSTRAINT bills_pk PRIMARY KEY (bill_id)
-) WITH (
-  OIDS=FALSE
+	userId INTEGER REFERENCES users(userId),
+	eventId INTEGER REFERENCES event(eventId)
 );
 
 
-
+-- DROP TABLE IF EXISTS cashflow  CASCADE;
 CREATE TABLE IF NOT EXISTS cashflow (
-	userId integer NOT NULL,
-	event_id integer NOT NULL,
-	amountPaid integer NOT NULL,
-	amountOwe integer NOT NULL,
-	hasToPay BOOLEAN NOT NULL
-) WITH (
-  OIDS=FALSE
+	cashflowId SERIAL PRIMARY KEY,
+	amountPaid INTEGER NOT NULL,
+	amountOwe INTEGER NOT NULL,
+	hasToPay BOOLEAN NOT NULL,
+	userId INTEGER REFERENCES users(userId),
+	eventId INTEGER REFERENCES event(eventId)
 );
+
 
 
 -- DROP TABLE IF EXISTS friend_group CASCADE;
 CREATE TABLE IF NOT EXISTS friend_group (
-	group_id serial NOT NULL,
-	event_id integer NOT NULL,
-	user_id integer NOT NULL,
-	CONSTRAINT friend_group_pk PRIMARY KEY (group_id)
-) WITH (
-  OIDS=FALSE
+	groupId SERIAL PRIMARY KEY,
+	eventId INTEGER REFERENCES event(eventId),
+	userId INTEGER REFERENCES users(userId)
 );
-
-
-
-
-
-ALTER TABLE bills ADD CONSTRAINT bills_fk0 FOREIGN KEY (creatorId) REFERENCES users(userId);
-ALTER TABLE bills ADD CONSTRAINT bills_fk1 FOREIGN KEY (event_id) REFERENCES event(event_id);
-
-ALTER TABLE cashflow ADD CONSTRAINT cashflow_fk0 FOREIGN KEY (userId) REFERENCES users(userId);
-ALTER TABLE cashflow ADD CONSTRAINT cashflow_fk1 FOREIGN KEY (event_id) REFERENCES event(event_id);
-
-ALTER TABLE friend_group ADD CONSTRAINT friend_group_fk0 FOREIGN KEY (event_id) REFERENCES event(event_id);
-ALTER TABLE friend_group ADD CONSTRAINT friend_group_fk1 FOREIGN KEY (user_id) REFERENCES users(userId);
