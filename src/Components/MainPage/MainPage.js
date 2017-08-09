@@ -20,8 +20,8 @@ class MainPage extends Component {
                 <div className="mainpage-header">
                     <div className="mainpage-logo">F A I R E N O U G H</div>
                     <div className="profile-box">
-                      <img src={this.props.user.picture} />
-                      <p>{this.props.user.firstName}</p>
+                      <img src={user.picture} />
+                      <p>{user.firstName}</p>
                     </div>
                     <div className="balance-bar">
                         <div className="small-box">
