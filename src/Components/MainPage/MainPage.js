@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUser } from '../../ducks/reducer';
 import './MainPage.css';
+import AddEvent from './AddEvent/AddEvent'
 
 class MainPage extends Component {
 
@@ -14,6 +15,7 @@ class MainPage extends Component {
       const{
         user
       } = this.props
+      console.log(user)
 
         return (
             <div className="mainpage-wrapper">
@@ -21,7 +23,7 @@ class MainPage extends Component {
                     <div className="mainpage-logo">F A I R E N O U G H</div>
                     <div className="profile-box">
                       <img src={user.picture} />
-                      <p style={{"background-color":"pink"}}>{user.given_name}</p>
+                      <p>{!user.name ? null : user.name.givenName}</p>
                     </div>
                     <div className="balance-bar">
                         <div className="small-box">
@@ -32,6 +34,7 @@ class MainPage extends Component {
                             <div className="top-letters">You are owed:</div>
                             <div className="bottom-letters">$0</div>
                         </div>
+
                         <div className="small-box">
                             <div className="top-letters">Balance:</div>
                             <div className="bottom-letters">$0</div>
@@ -39,10 +42,7 @@ class MainPage extends Component {
                     </div>
                 </div>
                 <div className="mainpage-body">
-                  <div>{}</div>
-                </div>
-                <div className="mainpage-footer">
-                    <button className="add-button"></button>
+                <AddEvent/>
                 </div>
             </div>
         )

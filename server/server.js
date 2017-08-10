@@ -28,6 +28,10 @@ massive(MASSIVE_URI)
 }).catch(err => console.log(err))
 app.listen(port, console.log(`listening on port ${port}`));
 
+
+
+
+
 //SET UP PASSPORT
 passport.use(new Auth0Strategy({
   domain: key.domain,
@@ -42,7 +46,7 @@ passport.use(new Auth0Strategy({
   ,givenName = profile.name.givenName || "anonymous"
   ,familyName = profile.name.familyName || "anonymous"
   ,profileName = profile.nickname || "anonymous"
-  ,picture = profile.picture
+  ,picture = profile.picture || "http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png"
   ,userbalance = 0
 
   db.users.get_user([auth0Id]).then(res=> {

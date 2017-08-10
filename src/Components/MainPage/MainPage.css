@@ -9,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     padding: auto;
+    justify-content: center;
     width: 100%;
     height: 300px; }
     .mainpage-wrapper .mainpage-header .mainpage-logo {
@@ -34,6 +35,7 @@
         border-radius: 50%;
         box-shadow: 1px 1px 5px black; }
       .mainpage-wrapper .mainpage-header .profile-box p {
+        text-align: center;
         height: 20px;
         width: 50px; }
     .mainpage-wrapper .mainpage-header .balance-bar {
@@ -51,23 +53,17 @@
         flex-direction: column;
         align-items: center;
         padding: auto;
+        justify-content: center;
         justify-content: space-around;
         color: white; }
       .mainpage-wrapper .mainpage-header .balance-bar .middle {
         border-right: 1px white solid;
         border-left: 1px white solid; }
-  .mainpage-wrapper .mainpage-footer {
-    position: fixed;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    border-top: 2px white solid;
-    opacity: 0.4;
-    z-index: 9999;
-    display: flex; }
-    .mainpage-wrapper .mainpage-footer button {
-      margin: 25px auto;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: white; }
+  .mainpage-wrapper .mainpage-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: auto;
+    justify-content: center;
+    height: 400px;
+    width: 100%; }
