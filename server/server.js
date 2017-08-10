@@ -9,7 +9,8 @@ const express = require('express')
 , port = config.PORT
 , MASSIVE_URI = config.MASSIVEURI
 , app = express()
-, key=require('./key');
+, key=require('./key')
+, control = require(__dirname + '/controllers/usersCtrl')
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -75,3 +76,5 @@ passport.deserializeUser(function(profileFromSession, done) {
 app.get('/api/main', function(req,res){
     res.send(req.user)
 })
+app.post('/api/main/createEvent', control.createEvent)
+app.get('/api/main/getEvent', control.getEvents)

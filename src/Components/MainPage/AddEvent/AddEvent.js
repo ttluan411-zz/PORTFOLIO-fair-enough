@@ -4,14 +4,18 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
+import axios from 'axios';
 
 
 export default class AddEvent extends Component {
-  state = {
-    open: false,
-    eventNameValue: '',
-    date:''
-  };
+  constructor(){
+    super();
+    this.state = {
+      open: false,
+      eventNameValue: '',
+      date:''
+    };
+  }
 
   handleOpen = () => {
     console.log('clicked')
@@ -19,7 +23,11 @@ export default class AddEvent extends Component {
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    // axios.post('/api/main', )
+    this.setState({
+      open: false
+    });
+
   };
   handleChange =(e) => {
     this.setState({eventNameValue:e.target.value})
