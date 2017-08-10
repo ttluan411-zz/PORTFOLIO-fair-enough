@@ -1,22 +1,27 @@
 import axios from 'axios'
 const initialState = {
     user: {},
-    eventName:
+    responseData: []
 }
 
-const GETUSER='GETUSER'
+const GETUSER = 'GETUSER',
+      GETEVENTS = 'GETEVENTS',
+      EVENTSUBMIT = 'EVENTSUBMIT'
 
 export default function (state=initialState, action){
     switch (action.type) {
         case GETUSER + '_FULFILLED':
-        console.log("user: ",action.payload)
-          return Object.assign({},state, {
-            user: action.payload
+            return Object.assign({},state, {
+              user: action.payload
+            });
+        case GETEVENTS + '_FULFILLED':
+            return Object.assign({},state,{
+              responseData: action.payload
+            });
+          case EVENTSUBMIT:
+          return Object.assign({},state,{
+            eventName: action.payload
           })
-        // case AMOUNTINPUT:
-        //     return Object.assign({}, state, {
-        //         value: action.payload
-        //     })
         default:
             return state
     }
@@ -30,11 +35,11 @@ export function getUser(){
     payload: promise
   }
 }
-
-export function eventInput(e){
-    console.log(e.target.value)
+export function getEvents(){
+  let promise = axios.get('/api/main/getEvent').then(res => res.data)
+  console.log(promise)
     return {
-        type: EVENTINPUT,
-        payload: e.target.value
+      type: GETEVENTS,
+      payload: promise
     }
 }

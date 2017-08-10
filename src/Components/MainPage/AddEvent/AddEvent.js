@@ -13,7 +13,7 @@ export default class AddEvent extends Component {
     this.state = {
       open: false,
       eventNameValue: '',
-      date: null
+      date: null,
     };
   }
 

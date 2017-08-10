@@ -1,35 +1,31 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { getEvents } from '../../../ducks/reducer'
 import axios from 'axios';
 
-export default class EventList extends Component {
-    constructor(){
-      super();
-      this.state = {
-        responseData: []
-      }
-
-
-    }
+class EventList extends Component {
     componentDidMount(){
-      axios.get('/api/main/getEvent').then(res => {
-        this.setState({
-          responseData: res.data
-        })
-      })
+      this.props.getEvents()
     }
 
-  render(){
+  render() {
+    const {
+      responseData
+    } = this.props;
     return(
-      <div>
+      <div className="event-list">
         <ul>
-          {this.state.responseData.map((event,i) =>
+          {responseData.map((el,i) =>
             <li key={i} >
-              {event.eventname}, {event.eventtime}
+              {el.eventname}, {el.eventtime}
             </li>
           )}
         </ul>
       </div>
     )
-
   }
 }
+
+export default connect((state) => {
+  return state;
+},{getEvents})(EventList);
