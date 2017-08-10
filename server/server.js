@@ -72,9 +72,10 @@ passport.serializeUser(function(profileToSession, done) {
 passport.deserializeUser(function(profileFromSession, done) {
   done(null, profileFromSession); //PUTS 2ND ARGUMENT ON REQ.USER
 });
-
 app.get('/api/main', function(req,res){
     res.send(req.user)
 })
+
+//ENDPOINTS
 app.post('/api/main/createEvent', control.createEvent)
 app.get('/api/main/getEvent', control.getEvents)

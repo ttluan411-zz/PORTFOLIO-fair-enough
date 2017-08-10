@@ -13,7 +13,7 @@ export default class AddEvent extends Component {
     this.state = {
       open: false,
       eventNameValue: '',
-      date:''
+      date: null
     };
   }
 
@@ -23,14 +23,23 @@ export default class AddEvent extends Component {
   };
 
   handleClose = () => {
-    // axios.post('/api/main', )
+    axios.post('/api/main/createEvent', {eventname:this.state.eventNameValue, eventtime:this.state.date}).then(res => {
+      console.log(res)
+    })
     this.setState({
-      open: false
+      open: false,
+      eventNameValue: '',
+      date: null
     });
 
   };
   handleChange =(e) => {
     this.setState({eventNameValue:e.target.value})
+  }
+  handleDateSubmit = (x,date) => {
+
+    this.setState({date: date})
+
   }
 
   render() {
@@ -42,7 +51,7 @@ export default class AddEvent extends Component {
         onClick={this.handleClose}
       />,
     ];
-
+    console.log(this.state)
     return (
       <div>
         <RaisedButton label="Create Event" onTouchTap={this.handleOpen} />
@@ -54,11 +63,18 @@ export default class AddEvent extends Component {
           onRequestClose={this.handleClose}
         >
         <TextField
+          className="event-input"
           floatingLabelText="Enter event name"
           value={this.state.eventNameValue}
           onChange={this.handleChange}
         />
-          <DatePicker hintText="Pick event date" container="inline" value={this.state.date} />
+          <DatePicker
+            className="date-input"
+            hintText="Pick event date"
+            container="inline"
+            value={this.state.date}
+            onChange={(x,date)=>{ this.handleDateSubmit(x,date) }}
+          />
         </Dialog>
       </div>
     );

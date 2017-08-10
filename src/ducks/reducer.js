@@ -1,26 +1,15 @@
 import axios from 'axios'
 const initialState = {
-    eventInputValue: '',
-    amountInputValue: '',
-    amount: 0,
-    events: [],
-    friends: [],
-    user: {}
+    user: {},
+    eventName:
 }
 
-const EVENTINPUT='EVENTINPUT'
-     ,AMOUNTINPUT='AMOUNTINPUT'
-     ,SAVEEVENT='SAVEEVENT'
-     ,DELETEEVENT='DELETEEVENT'
-     ,GETUSER='GETUSER'
+const GETUSER='GETUSER'
 
 export default function (state=initialState, action){
     switch (action.type) {
-        case EVENTINPUT:
-            return Object.assign({}, state, {
-                eventInputValue: action.payload
-        })
         case GETUSER + '_FULFILLED':
+        console.log("user: ",action.payload)
           return Object.assign({},state, {
             user: action.payload
           })

@@ -9,7 +9,6 @@ import EventList from './EventList/EventList';
 class MainPage extends Component {
 
   componentDidMount(){
-    // console.log(this.props.getUser())
     this.props.getUser()
   }
     render(){
