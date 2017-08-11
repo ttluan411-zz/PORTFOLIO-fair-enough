@@ -6,7 +6,7 @@ const initialState = {
 
 const GETUSER = 'GETUSER',
       GETEVENTS = 'GETEVENTS',
-      EVENTSUBMIT = 'EVENTSUBMIT'
+      ADDEVENT= 'ADDEVENT'
 
 export default function (state=initialState, action){
     switch (action.type) {
@@ -18,7 +18,7 @@ export default function (state=initialState, action){
             return Object.assign({},state,{
               responseData: action.payload
             });
-          case EVENTSUBMIT:
+          case ADDEVENT + '_FULFILLED':
           return Object.assign({},state,{
             eventName: action.payload
           })

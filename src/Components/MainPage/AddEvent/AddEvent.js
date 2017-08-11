@@ -5,26 +5,28 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
+import { getEvents } from '../../../ducks/reducer';
+import { connect } from 'react-redux';
 
 
-export default class AddEvent extends Component {
+class AddEvent extends Component {
   constructor(){
     super();
     this.state = {
       open: false,
       eventNameValue: '',
-      date: null,
+      date: null
     };
   }
 
   handleOpen = () => {
-    console.log('clicked')
+
     this.setState({open: true});
   };
 
   handleClose = () => {
     axios.post('/api/main/createEvent', {eventname:this.state.eventNameValue, eventtime:this.state.date}).then(res => {
-      console.log(res)
+      this.props.getEvents()
     })
     this.setState({
       open: false,
@@ -32,12 +34,12 @@ export default class AddEvent extends Component {
       date: null
     });
 
+
   };
   handleChange =(e) => {
     this.setState({eventNameValue:e.target.value})
   }
   handleDateSubmit = (x,date) => {
-
     this.setState({date: date})
 
   }
@@ -80,3 +82,6 @@ export default class AddEvent extends Component {
     );
   }
 }
+export default connect((state) => {
+  return state;
+},{getEvents})(AddEvent);
