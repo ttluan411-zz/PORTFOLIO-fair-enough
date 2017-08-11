@@ -1,1 +1,1 @@
-SELECT * FROM event
+select * from event

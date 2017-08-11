@@ -79,3 +79,4 @@ app.get('/api/main', function(req,res){
 //ENDPOINTS
 app.post('/api/main/createEvent', control.createEvent)
 app.get('/api/main/getEvent', control.getEvents)
+app.get('/api/main/getEvent/:id',control.selectEvent)

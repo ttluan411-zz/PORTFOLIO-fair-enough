@@ -33,32 +33,11 @@
         height: 50px;
         width: 50px;
         border-radius: 50%;
-        box-shadow: 1px 1px 5px black; }
+        box-shadow: 0px 0px 20px black; }
       .mainpage-wrapper .mainpage-header .profile-box p {
         text-align: center;
         height: 20px;
         width: 50px; }
-    .mainpage-wrapper .mainpage-header .balance-bar {
-      border-bottom: 1px white solid;
-      border-top: 1px white solid;
-      display: flex;
-      height: 70px;
-      width: 100%;
-      justify-content: space-between;
-      opacity: 0.9; }
-      .mainpage-wrapper .mainpage-header .balance-bar .small-box {
-        height: 70px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: auto;
-        justify-content: center;
-        justify-content: space-around;
-        color: white; }
-      .mainpage-wrapper .mainpage-header .balance-bar .middle {
-        border-right: 1px white solid;
-        border-left: 1px white solid; }
   .mainpage-wrapper .mainpage-body {
     display: flex;
     flex-direction: column;

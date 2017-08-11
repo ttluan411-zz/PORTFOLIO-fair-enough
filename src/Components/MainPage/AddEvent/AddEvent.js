@@ -25,7 +25,7 @@ class AddEvent extends Component {
   };
 
   handleClose = () => {
-    axios.post('/api/main/createEvent', {eventname:this.state.eventNameValue, eventtime:this.state.date}).then(res => {
+    axios.post('/api/main/createEvent', {eventname:this.state.eventNameValue, eventdate:this.state.date}).then(res => {
       this.props.getEvents()
     })
     this.setState({

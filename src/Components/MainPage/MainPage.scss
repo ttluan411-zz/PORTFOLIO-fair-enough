@@ -40,7 +40,7 @@ $maincolor: linear-gradient(45deg, #B479C3,#6CD5F9);
               height: 50px;
               width: 50px;
               border-radius: 50%;
-              box-shadow: 1px 1px 5px black;
+              box-shadow: 0px 0px 20px black;
             }
             p{
               text-align: center;
@@ -48,27 +48,7 @@ $maincolor: linear-gradient(45deg, #B479C3,#6CD5F9);
               width:50px;
             }
         }
-        .balance-bar {
-            border-bottom: $border;
-            border-top: $border;
-            display:flex;
-            height:70px;
-            width: 100%;
-            justify-content: space-between;
-            opacity: 0.9;
-            .small-box{
-                height: 70px;
-                flex: 1;
-                @include flex-center();
-                justify-content: space-around;
-                color: white;
-            }
-            .middle{
-                border-right: $border;
-                border-left: $border;
-            }
-        }
-    }
+      }
     .mainpage-body{
       @include flex-center();
       height:400px;

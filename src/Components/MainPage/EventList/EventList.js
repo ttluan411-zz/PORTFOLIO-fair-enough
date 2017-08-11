@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getEvents } from '../../../ducks/reducer'
 import axios from 'axios';
 import {List, ListItem} from 'material-ui/List';
-
+import { Link } from 'react-router-dom';
 class EventList extends Component {
     componentDidMount(){
       this.props.getEvents()
@@ -11,19 +11,23 @@ class EventList extends Component {
   render() {
     const {
       responseData
-    } = this.props;
+    } = this.props
     return(
       <div className="event-list">
-
-        <List
+        <List>
           {responseData.map((el,i) =>{
             return (
+              <Link to={`/event/${el.eventid}`}>
               <ListItem
+                // onClick={}
                 key={i}
                 primaryText={el.eventname}
-                secondaryText={el.eventtime}
+                secondaryText={el.eventdate}
               />
-          })})
+              </Link>
+
+          )}
+        )}
         </List>
       </div>
     )
