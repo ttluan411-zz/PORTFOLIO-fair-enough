@@ -10,7 +10,7 @@ const express = require('express')
 , MASSIVE_URI = config.MASSIVEURI
 , app = express()
 , key=require('./key')
-, control = require(__dirname + '/controllers/usersCtrl')
+, controller = require(__dirname + '/controllers/controller')
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -78,6 +78,7 @@ app.get('/api/main', function(req,res){
 })
 
 //ENDPOINTS
-app.post('/api/main/createEvent', control.createEvent)
-app.get('/api/main/getEvent', control.getEvents)
-app.get('/api/main/getEvent/:id',control.selectEvent)
+app.post('/api/main/createEvent', controller.createEvent)
+app.get('/api/main/getEvent', controller.getEvents)
+app.get('/api/main/getEvent/:id',controller.selectEvent)
+app.get('/api/main/getFriends',controller.getFriends)

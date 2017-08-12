@@ -2,12 +2,14 @@ import axios from 'axios'
 const initialState = {
     user: {},
     responseData: [],
-    friendlist: [],
+    friendList: [],
+    bills: []
 }
 
 const GETUSER = 'GETUSER',
       GETEVENTS = 'GETEVENTS',
-      SELECTEVENT = 'SELECTEVENT'
+      SELECTEVENT = 'SELECTEVENT',
+      GETFRIENDS = 'GETFRIENDS'
 
 export default function (state=initialState, action){
     switch (action.type) {
@@ -22,12 +24,16 @@ export default function (state=initialState, action){
         case SELECTEVENT + '_FULFILLED':
             return Object.assign({},state,{
               responseData: action.payload
+            });
+        case GETFRIENDS + '_FULFILLED':
+            return Object.assign({},state,{
+              friendList: action.payload
             })
         default:
             return state
     }
 }
-
+// GET LOGGED IN USER
 export function getUser(){
   let promise = axios.get('/api/main').then(res => res.data)
   return {
@@ -35,6 +41,7 @@ export function getUser(){
     payload: promise
   }
 }
+//GET EVENT LIST
 export function getEvents(){
   let promise = axios.get(`/api/main/getEvent`).then(res => res.data)
     return {
@@ -42,6 +49,7 @@ export function getEvents(){
       payload: promise
     }
 }
+// GET SINGLE EVENT FOR SELECTED EVENT
 export function selectEvent(i){
   let promise = axios.get(`/api/main/getEvent/${i}`).then(res => res.data)
   return {
@@ -49,6 +57,11 @@ export function selectEvent(i){
     payload: promise
   }
 }
-export function getFriendList(){
-  let promise = axios.get()
+// GET ALL USERS
+export function getFriends(){
+  let promise = axios.get(`/api/main/getFriends`).then(res => res.data)
+  return {
+    type: GETFRIENDS,
+    payload: promise
+  }
 }

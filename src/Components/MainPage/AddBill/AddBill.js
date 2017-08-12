@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
+import { getFriends } from '../../../ducks/reducer';
+import { connect } from 'react-redux';
 
 const styles = {
   customWidth: {
@@ -9,18 +11,23 @@ const styles = {
   },
 };
 
-export default class AddBill extends Component {
+class AddBill extends Component {
   state = {
     value1: null,
     value2: null,
     value3: null,
   };
-
+  componentDidMount(){
+    this.props.getFriends()
+  }
   handleChange1 = (event, index, value) => this.setState({value1: value});
   handleChange2 = (event, index, value) => this.setState({value2: value});
   handleChange3 = (event, index, value) => this.setState({value3: value});
 
   render() {
+    const {
+      friendList
+    } = this.props
     return (
       <div>
         <TextField
@@ -49,12 +56,12 @@ export default class AddBill extends Component {
           onChange={this.handleChange2}
           style={styles.customWidth}
         >
-          <MenuItem value={"You"} primaryText="You" />
-          <MenuItem value={'George'} primaryText="George" />
-          <MenuItem value={'Im'} primaryText="Im" />
-          <MenuItem value={'Mason'} primaryText="Mason" />
+        {friendList.map((el,i)=> {
+          return (
+            <MenuItem key={i} value={el.userid} primaryText={el.givenname} />
+          )
+        })}
         </SelectField>
-        {console.log(this.state.value2)}
         <br />
         <SelectField
           floatingLabelText="Devide"
@@ -70,3 +77,6 @@ export default class AddBill extends Component {
     );
   }
 }
+export default connect((state) => {
+  return state;
+},{getFriends})(AddBill);

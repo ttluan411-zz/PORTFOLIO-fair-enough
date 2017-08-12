@@ -19,7 +19,6 @@ class EventList extends Component {
             return (
               <Link to={`/event/${el.eventid}`}>
               <ListItem
-                // onClick={}
                 key={i}
                 primaryText={el.eventname}
                 secondaryText={el.eventdate}
