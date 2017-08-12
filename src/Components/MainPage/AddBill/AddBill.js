@@ -9,11 +9,6 @@ const styles = {
   },
 };
 
-/**
- * `SelectField` is implemented as a controlled component,
- * with the current selection set through the `value` property.
- * The `SelectField` can be disabled with the `disabled` property.
- */
 export default class AddBill extends Component {
   state = {
     value1: null,
