@@ -16,14 +16,14 @@ class MainPage extends Component {
         user
       } = this.props
       console.log(user)
-
         return (
+
             <div className="mainpage-wrapper">
                 <div className="mainpage-header">
                     <div className="mainpage-logo">F A I R E N O U G H</div>
                     <div className="profile-box">
                       <img src={user.picture} />
-                      <p>{!user.name ? null : user.name.givenName}</p>
+                      <p>{!user.givenname ? null : user.givenname }</p>
                     </div>
                 </div>
                 <div className="mainpage-body">

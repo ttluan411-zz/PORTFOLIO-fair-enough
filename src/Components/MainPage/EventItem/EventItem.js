@@ -6,6 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
+import AddBill from '../AddBill/AddBill';
 class EventItem extends Component {
   componentDidMount(){
     this.props.selectEvent(this.props.match.params.id)
@@ -34,6 +35,7 @@ class EventItem extends Component {
         iconElementLeft={<IconButton><NavigationClose /></IconButton>}
         iconElementRight={<FlatButton label="Save" />}
       />
+      <AddBill/>
       </div>
     )
   }

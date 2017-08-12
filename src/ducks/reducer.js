@@ -2,6 +2,7 @@ import axios from 'axios'
 const initialState = {
     user: {},
     responseData: [],
+    friendlist: [],
 }
 
 const GETUSER = 'GETUSER',
@@ -47,4 +48,7 @@ export function selectEvent(i){
     type: SELECTEVENT,
     payload: promise
   }
+}
+export function getFriendList(){
+  let promise = axios.get()
 }

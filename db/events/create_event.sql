@@ -1,3 +1,3 @@
-INSERT INTO event (eventName, eventDate, totalExpense, eachPersonExpense, paxCount)
-VALUES ($1, $2, 0, 0, 0)
+INSERT INTO event (eventName, eventDate, userid, totalExpense, eachPersonExpense, paxCount )
+VALUES ($1, $2, $3, 0, 0, 0)
 RETURNING *

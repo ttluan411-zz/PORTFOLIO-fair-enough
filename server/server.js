@@ -51,13 +51,14 @@ passport.use(new Auth0Strategy({
   ,userbalance = 0
 
   db.users.get_user([auth0Id]).then(res=> {
+    console.log(res)
     if(!res.length){
         db.users.create_user([auth0Id, givenName, familyName, email, profileName, picture, userbalance])
         .then((userCreated) => {
-              return done(null, profile)
+              return done(null, userCreated)
             }).catch( (e) => console.log(e))
       } else {
-        return done(null, profile);
+        return done(null, res[0]);
       }
     }).catch( err => console.log( err )) // GOES TO SERIALIZE-USER WHEN U INVOKE DONE
 }));
