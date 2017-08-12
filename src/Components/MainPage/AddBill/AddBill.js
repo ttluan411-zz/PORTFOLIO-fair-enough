@@ -16,10 +16,14 @@ const styles = {
  */
 export default class AddBill extends Component {
   state = {
-    value: 1,
+    value1: null,
+    value2: null,
+    value3: null,
   };
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange1 = (event, index, value) => this.setState({value1: value});
+  handleChange2 = (event, index, value) => this.setState({value2: value});
+  handleChange3 = (event, index, value) => this.setState({value3: value});
 
   render() {
     return (
@@ -34,37 +38,38 @@ export default class AddBill extends Component {
         /><br />
         <SelectField
           floatingLabelText="Currency"
-          value={this.state.value}
-          onChange={this.handleChange}
+          value={this.state.value1}
+          onChange={this.handleChange1}
           style={styles.customWidth}
         >
-          <MenuItem value={1} primaryText="$" />
-          <MenuItem value={2} primaryText="€" />
-          <MenuItem value={3} primaryText="£" />
-          <MenuItem value={4} primaryText="¥" />
+          <MenuItem value={"$"} primaryText="$" />
+          <MenuItem value={"€"} primaryText="€" />
+          <MenuItem value={"£"} primaryText="£" />
+          <MenuItem value={"¥"} primaryText="¥" />
         </SelectField>
         <br />
         <SelectField
           floatingLabelText="Paid by"
-          value={this.state.value}
-          onChange={this.handleChange}
+          value={this.state.value2}
+          onChange={this.handleChange2}
           style={styles.customWidth}
         >
-          <MenuItem value={1} primaryText="You" />
-          <MenuItem value={2} primaryText="George" />
-          <MenuItem value={3} primaryText="Im" />
-          <MenuItem value={4} primaryText="Mason" />
+          <MenuItem value={"You"} primaryText="You" />
+          <MenuItem value={'George'} primaryText="George" />
+          <MenuItem value={'Im'} primaryText="Im" />
+          <MenuItem value={'Mason'} primaryText="Mason" />
         </SelectField>
+        {console.log(this.state.value2)}
         <br />
         <SelectField
           floatingLabelText="Devide"
-          value={this.state.value}
-          onChange={this.handleChange}
+          value={this.state.value3}
+          onChange={this.handleChange3}
           style={styles.customWidth}
         >
-          <MenuItem value={1} primaryText="Equally" />
-          <MenuItem value={2} primaryText="By shares" />
-          <MenuItem value={3} primaryText="By %" />
+          <MenuItem value={"Equally"} primaryText="Equally" />
+          <MenuItem value={"By shares"} primaryText="By shares" />
+          <MenuItem value={"By %"} primaryText="By %" />
         </SelectField>
       </div>
     );
