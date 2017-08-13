@@ -1,0 +1,7 @@
+.addBill-wrapper {
+  display: flex;
+  flex-direction: column; }
+
+.button-wrapper {
+  margin-top: 40px;
+  display: flex; }
