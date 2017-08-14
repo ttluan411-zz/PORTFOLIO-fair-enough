@@ -40,8 +40,6 @@ class AddEvent extends Component {
     this.setState({eventNameValue:e.target.value})
   }
   handleDateSubmit = (x,date) => {
-    // var date = moment(date).format("MMM Do YY")
-    // console.log(date)
     this.setState({date: date})
     console.log(this.state.date)
   }

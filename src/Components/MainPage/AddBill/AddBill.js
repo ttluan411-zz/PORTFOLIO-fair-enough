@@ -47,9 +47,12 @@ class AddBill extends Component {
   handleChange1 = (event, index, value) => this.setState({currency: value});
   handleChange2 = (event, index, value) => this.setState({paidUserId: value});
   handleChange3 = (event, index, value) => this.setState({devideMethod: value});
-  handleChange4 = (event, index, friendGroup) => this.setState({friendGroup});
+  handleChange4 = (event, index, friendGroup) => {
+    this.setState({friendGroup})
+  };
   handleDateSubmit = (x,date) => { this.setState({date}) }
   handleSaveBill = () => axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
+                // .axios.post('/api/main/addTransaction',this.state.friendGroup)
 
   selectionRenderer = (friendGroup) => {
     switch (friendGroup.length) {
@@ -64,7 +67,7 @@ class AddBill extends Component {
 
   render() {
     const { friendList } = this.props
-    console.log(this.state.eventId)
+    console.log(this.state.friendGroup)
     return (
       <div className="addBill-wrapper">
         <TextField
@@ -113,12 +116,11 @@ class AddBill extends Component {
           selectionRenderer={this.selectionRenderer}
         >
           {friendList.map((user,i) => (
-
             <MenuItem
               key={i}
               insetChildren={true}
               checked={this.state.friendGroup.indexOf(user.value) > -1}
-              value={user.givenname}
+              value={user.userid}
               primaryText={user.givenname}
             />
           ))}
