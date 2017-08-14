@@ -3,9 +3,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
+import DatePicker from 'material-ui/DatePicker';
 import { getFriends } from '../../../ducks/reducer';
 import { connect } from 'react-redux';
-import './AddBill.css'
+import './AddBill.css';
+import axios from 'axios';
 const styles = {
   customWidth: {
     width: 200,
@@ -20,10 +22,15 @@ class AddBill extends Component {
 
 
   state = {
-    currency: null,
-    paidUserId: null,
-    devideMethod: null,
-    values: []
+    billName: 'New Expense',
+    amount: 0,
+    currency: '$',
+    paidUserId: 1,
+    devideMethod: 'Equally',
+    date: null,
+    friendGroup: [],
+    eventId: this.props.responseData[0].eventid,
+    isSettled: false
   };
 
 
@@ -36,26 +43,24 @@ class AddBill extends Component {
   handleChange1 = (event, index, value) => this.setState({currency: value});
   handleChange2 = (event, index, value) => this.setState({paidUserId: value});
   handleChange3 = (event, index, value) => this.setState({devideMethod: value});
-  handleChange4 = (event, index, values) => this.setState({values});
+  handleChange4 = (event, index, friendGroup) => this.setState({friendGroup});
+  handleDateSubmit = (x,date) => { this.setState({date: date}) }
+  handleSaveBill = () => axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
 
-  selectionRenderer = (values) => {
-    switch (values.length) {
+  selectionRenderer = (friendGroup) => {
+    switch (friendGroup.length) {
       case 0:
         return '';
       case 1:
-        return this.props.friendList[0].givenname;
+        return friendGroup[0];
       default:
-        return `${values.length} persons selected`;
+        return `${friendGroup.length} persons selected`;
     }
   }
 
-
-
-
-
   render() {
     const { friendList } = this.props
-    console.log(this.state.values)
+    console.log(this.state.eventId)
     return (
       <div className="addBill-wrapper">
         <TextField
@@ -95,7 +100,7 @@ class AddBill extends Component {
         <SelectField
           multiple={true}
           hintText="Select a name"
-          value={this.state.values}
+          value={this.state.friendGroup}
           onChange={this.handleChange4}
           selectionRenderer={this.selectionRenderer}
         >
@@ -104,7 +109,7 @@ class AddBill extends Component {
             <MenuItem
               key={i}
               insetChildren={true}
-              checked={this.state.values.indexOf(user.value) > -1}
+              checked={this.state.friendGroup.indexOf(user.value) > -1}
               value={user.givenname}
               primaryText={user.givenname}
             />
@@ -119,11 +124,18 @@ class AddBill extends Component {
         >
           <MenuItem value={"Equally"} primaryText="Equally" />
           <MenuItem value={"By shares"} primaryText="By shares" />
-          <MenuItem value={"By %"} primaryText="By %" />
         </SelectField>
+        <br/>
+        <DatePicker
+          className="date-input"
+          hintText="Pick date"
+          container="inline"
+          value={this.state.date}
+          onChange={(x,date)=>{ this.handleDateSubmit(x,date) }}
+        />
         <div className="button-wrapper">
         <RaisedButton label="Cancel" style={button_style} />
-        <RaisedButton label="Save" secondary={true} style={button_style} />
+        <RaisedButton label="Save" secondary={true} style={button_style} onClick={this.handleSaveBill}  />
         </div>
       </div>
     );

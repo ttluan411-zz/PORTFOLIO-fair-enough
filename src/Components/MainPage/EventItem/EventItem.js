@@ -34,7 +34,7 @@ class EventItem extends Component {
       <AppBar
         title={ <span style={styles.title} >{!responseData[0] ? null :responseData[0].eventname } </span> }
         iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-        iconElementRight={<FlatButton label="Save" />}
+        iconElementRight={<FlatButton label="Edit" />}
       />
       <div className="addBill-wrapper">
       <AddBill/>

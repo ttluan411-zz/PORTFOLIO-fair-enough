@@ -18,5 +18,11 @@ module.exports = {
     const db = req.app.get('db');
     db.friends.get_friends()
     .then(all_friends => res.status(200).send(all_friends)).catch(err=>console.log(err))
-  }
+  },
+  createBill: (req, res, next) => {
+    console.log(req.body)
+    const db = req.app.get('db');
+    db.bills.create_bill([req.body.billName, req.body.amount, req.body.date, req.body.currency, req.body.paidUserid, req.body.eventId, req.body.devideMethod, req.body.isSettled])
+    .then(bill => res.status(200).send(bill)).catch(err => console.log(err))
+  },
 }
