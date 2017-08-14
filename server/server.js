@@ -53,9 +53,10 @@ passport.use(new Auth0Strategy({
   db.users.get_user([auth0Id]).then(res=> {
     console.log(res)
     if(!res.length){
-        db.users.create_user([auth0Id, givenName, familyName, email, profileName, picture, userbalance])
+        db.users.create_user([auth0Id, givenName, familyName, email, profileName, picture])
         .then((userCreated) => {
-              return done(null, userCreated)
+          console.log('Logged in user: ',userCreated)
+              return done(null, userCreated[0])
             }).catch( (e) => console.log(e))
       } else {
         return done(null, res[0]);

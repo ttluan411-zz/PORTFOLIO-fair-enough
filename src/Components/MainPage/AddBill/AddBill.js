@@ -55,7 +55,7 @@ class AddBill extends Component {
 
   render() {
     const { friendList } = this.props
-
+    console.log(this.state.values)
     return (
       <div className="addBill-wrapper">
         <TextField
@@ -100,6 +100,7 @@ class AddBill extends Component {
           selectionRenderer={this.selectionRenderer}
         >
           {friendList.map((user,i) => (
+
             <MenuItem
               key={i}
               insetChildren={true}

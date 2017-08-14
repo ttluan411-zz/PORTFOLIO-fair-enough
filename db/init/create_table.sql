@@ -1,9 +1,13 @@
-
--- DROP TABLE IF EXISTS balanceSheet CASCADE;
--- DROP TABLE IF EXISTS payment_request CASCADE;
--- DROP TABLE IF EXISTS friendlist CASCADE;
+--
 --
 -- DROP TABLE IF EXISTS users CASCADE;
+-- DROP TABLE IF EXISTS event CASCADE;
+-- DROP TABLE IF EXISTS bills CASCADE;
+-- DROP TABLE IF EXISTS transactions  CASCADE;
+-- DROP TABLE IF EXISTS balance CASCADE;
+-- DROP TABLE IF EXISTS friendGroup CASCADE;
+
+
 CREATE TABLE IF NOT EXISTS users (
 	userId SERIAL PRIMARY KEY,
 	givenName TEXT NOT NULL,
@@ -11,45 +15,59 @@ CREATE TABLE IF NOT EXISTS users (
 	email TEXT NOT NULL,
 	profileName TEXT NOT NULL,
 	picture TEXT,
-	auth0Id TEXT NOT NULL,
-	userBalance INTEGER NOT NULL
+	auth0Id TEXT NOT NULL
 );
 
--- DROP TABLE IF EXISTS event CASCADE;
 CREATE TABLE IF NOT EXISTS event (
 	eventId SERIAL PRIMARY KEY,
 	eventName TEXT NOT NULL,
 	eventDate TIMESTAMP NOT NULL,
-	totalExpense INTEGER NOT NULL,
-	eachPersonExpense INTEGER NOT NULL,
-	paxCount INTEGER NOT NULL,
+	totalExpense DECIMAL(5,2) NOT NULL,
+	eachPersonExpense DECIMAL(5,2) NOT NULL,
+	splitType TEXT NOT NULL,
 	userId INTEGER REFERENCES users(userId)
 );
-
--- DROP TABLE IF EXISTS bills CASCADE;
+CREATE TABLE IF NOT EXISTS friendGroup (
+	friendGroupId SERIAL PRIMARY KEY,
+	friendId INTEGER REFERENCES users(userId),
+	eventId INTEGER REFERENCES event(eventId)
+);
 CREATE TABLE IF NOT EXISTS bills (
 	billId SERIAL PRIMARY KEY,
-	amount INTEGER NOT NULL,
+	amount DECIMAL(5,2) NOT NULL,
 	createTime TIMESTAMP NOT NULL,
 	billsName TEXT NOT NULL,
 	userId INTEGER REFERENCES users(userId),
-	eventId INTEGER REFERENCES event(eventId)
+	eventId INTEGER REFERENCES event(eventId),
+	amountSettled DECIMAL(5,2) NOT NULL,
+	isSettled BOOLEAN NOT NULL,
+	groupId INTEGER REFERENCES friendGroup(friendGroupId)
 );
 
 
--- DROP TABLE IF EXISTS cashflow  CASCADE;
-CREATE TABLE IF NOT EXISTS cashflow (
-	cashflowId SERIAL PRIMARY KEY,
-	amountPaid INTEGER NOT NULL,
-	userId INTEGER REFERENCES users(userId),
-	eventId INTEGER REFERENCES event(eventId)
+CREATE TABLE IF NOT EXISTS transactions (
+	transactionId SERIAL PRIMARY KEY,
+	amount DECIMAL(5,2) NOT NULL,
+	createTime TIMESTAMP NOT NULL,
+	borrowerId INTEGER NOT NULL,
+	lenderId INTEGER REFERENCES users(userId),
+	eventId INTEGER REFERENCES event(eventId),
+	billId INTEGER REFERENCES bills(billId)
 );
 
 
-
--- DROP TABLE IF EXISTS friend_group CASCADE;
-CREATE TABLE IF NOT EXISTS friend_group (
-	groupId SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS balance (
+	balanceId SERIAL PRIMARY KEY,
+	amountUserIsOwed DECIMAL(5,2) NOT NULL,
+	amountUserCollected DECIMAL(5,2) NOT NULL,
+	amountUserOwes DECIMAL(5,2) NOT NULL,
+	amountUserPaidBack DECIMAL(5,2) NOT NULL,
 	eventId INTEGER REFERENCES event(eventId),
 	userId INTEGER REFERENCES users(userId)
 );
+--
+-- INSERT INTO users (auth0Id, givenName, familyName, email, profileName, picture)
+-- VALUES
+-- ('nasd1234', 'George', 'Lopez','george@gmail.com', 'timmy','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('na635', 'Im', 'Khem','Im@gmail.com', 'IK','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('n34ggh1234', 'Huy', 'Dang','Huydang@gmail.com', 'HuyHuy','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png')
