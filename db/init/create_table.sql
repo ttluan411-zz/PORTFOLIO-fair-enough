@@ -1,4 +1,4 @@
---
+
 -- 
 -- DROP TABLE IF EXISTS users CASCADE;
 -- DROP TABLE IF EXISTS event CASCADE;
@@ -6,7 +6,7 @@
 -- DROP TABLE IF EXISTS transactions  CASCADE;
 -- DROP TABLE IF EXISTS balance CASCADE;
 -- DROP TABLE IF EXISTS friendGroup CASCADE;
---
+
 
 CREATE TABLE IF NOT EXISTS users (
 	userId SERIAL PRIMARY KEY,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS event (
 	eventId SERIAL PRIMARY KEY,
 	eventName TEXT NOT NULL,
-	eventDate TIMESTAMP NOT NULL,
+	eventDate TEXT NOT NULL,
 	totalExpense DECIMAL(5,2) NOT NULL,
 	eachPersonExpense DECIMAL(5,2) NOT NULL,
 	userId INTEGER REFERENCES users(userId)
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS friendGroup (
 CREATE TABLE IF NOT EXISTS bills (
 	billId SERIAL PRIMARY KEY,
 	amount DECIMAL(5,2) NOT NULL,
-	createTime TIMESTAMP NOT NULL,
+	createTime TEXT NOT NULL,
 	billsName TEXT NOT NULL,
 	currency TEXT NOT NULL,
 	userId INTEGER REFERENCES users(userId),

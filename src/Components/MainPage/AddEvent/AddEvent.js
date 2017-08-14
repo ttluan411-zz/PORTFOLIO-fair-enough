@@ -7,11 +7,11 @@ import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import { getEvents } from '../../../ducks/reducer';
 import { connect } from 'react-redux';
-
+import moment from 'moment';
 
 class AddEvent extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       open: false,
       eventNameValue: '',
@@ -25,13 +25,13 @@ class AddEvent extends Component {
   };
 
   handleClose = () => {
-    axios.post('/api/main/createEvent', {eventname:this.state.eventNameValue, eventdate:this.state.date}).then(res => {
+    axios.post('/api/main/createEvent', {eventname:this.state.eventNameValue, eventdate:moment(this.state.date).format("MMM Do YY")}).then(res => {
       this.props.getEvents()
     })
     this.setState({
       open: false,
       eventNameValue: '',
-      date: null
+      date: ''
     });
 
 
@@ -40,8 +40,10 @@ class AddEvent extends Component {
     this.setState({eventNameValue:e.target.value})
   }
   handleDateSubmit = (x,date) => {
+    // var date = moment(date).format("MMM Do YY")
+    // console.log(date)
     this.setState({date: date})
-
+    console.log(this.state.date)
   }
 
   render() {

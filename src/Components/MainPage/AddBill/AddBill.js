@@ -22,12 +22,12 @@ class AddBill extends Component {
 
 
   state = {
-    billName: 'New Expense',
-    amount: 0,
-    currency: '$',
-    paidUserId: 1,
-    devideMethod: 'Equally',
-    date: null,
+    billName: '',
+    amount: '',
+    currency: '',
+    paidUserId: '',
+    devideMethod: '',
+    date: '',
     friendGroup: [],
     eventId: this.props.responseData[0].eventid,
     isSettled: false
@@ -40,6 +40,8 @@ class AddBill extends Component {
 
   };
 
+  handleChangeBillName =(e) => { this.setState({billName:e.target.value}) };
+  handleChangeBillAmount =(e) => { this.setState({amount:e.target.value}) }
   handleChange1 = (event, index, value) => this.setState({currency: value});
   handleChange2 = (event, index, value) => this.setState({paidUserId: value});
   handleChange3 = (event, index, value) => this.setState({devideMethod: value});
@@ -66,10 +68,14 @@ class AddBill extends Component {
         <TextField
           hintText="Hotel, Car Rental, etc..."
           floatingLabelText="Enter a bill"
+          value={this.state.billName}
+          onChange={this.handleChangeBillName}
         /><br />
         <TextField
           hintText="100.00"
           floatingLabelText="Enter amount"
+          value={this.state.amount}
+          onChange={this.handleChangeBillAmount}
         /><br />
         <SelectField
           floatingLabelText="Currency"
