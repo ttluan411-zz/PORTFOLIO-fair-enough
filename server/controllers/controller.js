@@ -1,3 +1,4 @@
+var moment = require('moment');
 module.exports = {
   getEvents: (req, res, next) => {
     const db = req.app.get('db');
@@ -22,7 +23,7 @@ module.exports = {
   createBill: (req, res, next) => {
     console.log(req.body)
     const db = req.app.get('db');
-    db.bills.create_bill([req.body.billName, req.body.amount, req.body.date, req.body.currency, req.body.paidUserId, req.body.eventId, req.body.devideMethod, req.body.isSettled])
+    db.bills.create_bill([req.body.billName, req.body.amount, moment(req.body.date).format("MMM Do YY"), req.body.currency, req.body.paidUserId, req.body.eventId, req.body.devideMethod, req.body.isSettled])
     .then(bill => res.status(200).send(bill)).catch(err => console.log(err))
   },
 }

@@ -8,6 +8,8 @@ import { getFriends } from '../../../ducks/reducer';
 import { connect } from 'react-redux';
 import './AddBill.css';
 import axios from 'axios';
+import moment from 'moment';
+
 const styles = {
   customWidth: {
     width: 200,
@@ -46,7 +48,7 @@ class AddBill extends Component {
   handleChange2 = (event, index, value) => this.setState({paidUserId: value});
   handleChange3 = (event, index, value) => this.setState({devideMethod: value});
   handleChange4 = (event, index, friendGroup) => this.setState({friendGroup});
-  handleDateSubmit = (x,date) => { this.setState({date: date}) }
+  handleDateSubmit = (x,date) => { this.setState({date}) }
   handleSaveBill = () => axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
 
   selectionRenderer = (friendGroup) => {
