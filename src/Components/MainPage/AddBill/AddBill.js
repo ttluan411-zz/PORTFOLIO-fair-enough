@@ -53,7 +53,6 @@ class AddBill extends Component {
   };
   handleDateSubmit = (x,date) => { this.setState({date}) }
   handleSaveBill = () => axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
-                // .axios.post('/api/main/addTransaction',this.state.friendGroup)
 
   selectionRenderer = (friendGroup) => {
     switch (friendGroup.length) {

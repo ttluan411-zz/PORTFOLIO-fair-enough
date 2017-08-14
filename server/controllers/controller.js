@@ -32,6 +32,6 @@ module.exports = {
       .catch(err => console.log(err))}
       })
     }).then((bill) => res.status(200).send(bill)).catch(err => console.log(err))
-
   },
+
 }

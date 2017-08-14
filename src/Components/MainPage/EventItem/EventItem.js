@@ -7,6 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
 import AddBill from '../AddBill/AddBill';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import './EventItem.css';
 class EventItem extends Component {
   componentDidMount(){
