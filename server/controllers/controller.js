@@ -26,16 +26,12 @@ module.exports = {
     let average = req.body.amount/req.body.friendGroup.length;
     db.bills.create_bill([req.body.billName, req.body.amount, moment(req.body.date).format("MMM Do YY"), req.body.currency, req.body.paidUserId, req.body.eventId, req.body.devideMethod, req.body.isSettled])
     .then((bill)=> {
-      var item = bill;
       req.body.friendGroup.forEach((person)=> {
-        db.bills.create_transaction([average,moment(req.body.date).format("MMM Do YY"),person,req.body.paidUserId,req.body.eventId ]).catch(err => console.log(err))
+        if(person !== req.body.paidUserId){
+        db.bills.create_transaction([average,moment(req.body.date).format("MMM Do YY"),person,req.body.paidUserId,req.body.eventId, bill[0].billid ])
+      .catch(err => console.log(err))}
       })
-      // .then(bill => res.status(200).send(bill))
     }).then((bill) => res.status(200).send(bill)).catch(err => console.log(err))
 
   },
-  // addTransaction: (req, res, next) => {
-  //   const db = req.app.get('db');
-  //   db.bills.create_transaction([req.body.])
-  // }
 }

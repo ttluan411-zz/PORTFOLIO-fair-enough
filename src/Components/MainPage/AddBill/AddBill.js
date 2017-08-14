@@ -48,7 +48,8 @@ class AddBill extends Component {
   handleChange2 = (event, index, value) => this.setState({paidUserId: value});
   handleChange3 = (event, index, value) => this.setState({devideMethod: value});
   handleChange4 = (event, index, friendGroup) => {
-    this.setState({friendGroup})
+    this.setState({friendGroup});
+    axios.post('/api/main')
   };
   handleDateSubmit = (x,date) => { this.setState({date}) }
   handleSaveBill = () => axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
