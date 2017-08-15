@@ -4,7 +4,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import { getFriends } from '../../../ducks/reducer';
+import { getFriends, getBills } from '../../../ducks/reducer';
 import { connect } from 'react-redux';
 import './AddBill.css';
 import axios from 'axios';
@@ -19,9 +19,7 @@ const button_style = {
   margin: 12,
 };
 
-
 class AddBill extends Component {
-
 
   state = {
     billName: '',
@@ -31,15 +29,12 @@ class AddBill extends Component {
     devideMethod: '',
     date: '',
     friendGroup: [],
-    eventId: this.props.responseData[0].eventid,
+    eventId: this.props.eventId,
     isSettled: false
   };
 
-
-
   componentDidMount(){
     this.props.getFriends()
-
   };
 
   handleChangeBillName =(e) => { this.setState({billName:e.target.value}) };
@@ -52,7 +47,13 @@ class AddBill extends Component {
     axios.post('/api/main')
   };
   handleDateSubmit = (x,date) => { this.setState({date}) }
-  handleSaveBill = () => axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
+  handleSaveBill = () => {
+    axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
+    .then(() => {
+      this.props.onSave(1);
+      this.props.getBills(this.state.eventId)
+    })
+  }
 
   selectionRenderer = (friendGroup) => {
     switch (friendGroup.length) {
@@ -67,7 +68,7 @@ class AddBill extends Component {
 
   render() {
     const { friendList } = this.props
-    console.log(this.state.friendGroup)
+    // console.log(this.state.friendGroup)
     return (
       <div className="addBill-wrapper">
         <TextField
@@ -153,4 +154,4 @@ class AddBill extends Component {
 }
 export default connect((state) => {
   return state;
-},{getFriends})(AddBill);
+},{getFriends, getBills})(AddBill);

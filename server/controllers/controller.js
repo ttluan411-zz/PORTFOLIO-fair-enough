@@ -21,7 +21,6 @@ module.exports = {
     .then(all_friends => res.status(200).send(all_friends)).catch(err=>console.log(err))
   },
   createBill: (req, res, next) => {
-    console.log(req.body)
     const db = req.app.get('db');
     let average = req.body.amount/req.body.friendGroup.length;
     db.bills.create_bill([req.body.billName, req.body.amount, moment(req.body.date).format("MMM Do YY"), req.body.currency, req.body.paidUserId, req.body.eventId, req.body.devideMethod, req.body.isSettled])
@@ -33,5 +32,10 @@ module.exports = {
       })
     }).then((bill) => res.status(200).send(bill)).catch(err => console.log(err))
   },
-
+  getBills: (req, res, next) => {
+    console.log('here abc', req.body)
+    const db = req.app.get('db');
+    db.bills.get_bills([req.params.id])
+    .then(bills => res.status(200).send(bills)).catch(err=> console.log(err))
+  }
 }
