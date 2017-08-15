@@ -27,17 +27,12 @@ class BillList extends Component {
     });
   };
 
-
   componentDidMount(){
     this.props.getBills(this.props.eventId)
   }
 
 
-
-
   render(){
-    console.log(this.props.billList, "message")
-
     const iconButtonElement = (
       <IconButton
         touch={true}
@@ -57,9 +52,6 @@ class BillList extends Component {
       <div className="billList-wrapper">
         <List>
           {this.props.billList.map((el,i) => {
-
-            console.log("el here",el.bills)
-
             return (
               <ListItem
                 leftAvatar={<Avatar src={moneyAvatar} />}
@@ -75,17 +67,20 @@ class BillList extends Component {
                   </p>
                 }
                 secondaryTextLines={2}
-                //
                 nestedItems={[
-
                   el.bills.nestedlist.map((transaction,index) => {
+                    let borrowerId =transaction.borrowerid
+                    let lenderId =transaction.lenderid
+                    let borrower = this.props.friendList.filter((e)=> e.userid == borrowerId)[0]
+                    let lender = this.props.friendList.filter((e)=> e.userid == lenderId)[0]
                     return(
                         <ListItem
                           key={index}
                           secondaryText={
                             <p>
-                             {transaction.borrowerid}
-                             {transaction.lenderid} : {transaction.amount}
+
+                             {borrower.givenname} owes {lender.givenname}
+                             : {transaction.amount}
                            </p>
                           }
                         />
@@ -94,12 +89,10 @@ class BillList extends Component {
                 ]}
               />
             )
-
           })}
-          <Divider inset={true} />
         </List>
-
-        </div>
+        <Divider inset={true} />
+      </div>
     )
   }
 }
