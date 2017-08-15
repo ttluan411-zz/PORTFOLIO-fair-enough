@@ -30,12 +30,16 @@ module.exports = {
         db.bills.create_transaction([average,moment(req.body.date).format("MMM Do YY"),person,req.body.paidUserId,req.body.eventId, bill[0].billid ])
       .catch(err => console.log(err))}
       })
-    }).then((bill) => res.status(200).send(bill)).catch(err => console.log(err))
+    }).then((bill) => {
+      res.status(200).send(bill)
+    }).catch(err => console.log(err))
   },
   getBills: (req, res, next) => {
-    console.log('here abc', req.body)
+    console.log('here abc', req.params.id)
     const db = req.app.get('db');
     db.bills.get_bills([req.params.id])
-    .then(bills => res.status(200).send(bills)).catch(err=> console.log(err))
+    .then(bills => {
+      res.status(200).send(bills)
+    }).catch(err=> console.log(err))
   }
 }

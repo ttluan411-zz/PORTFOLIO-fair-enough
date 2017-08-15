@@ -51,7 +51,8 @@ class AddBill extends Component {
     axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
     .then(() => {
       this.props.onSave(1);
-      this.props.getBills(this.state.eventId)
+      console.log('here')
+      this.props.getBills(this.state.eventId);
     })
   }
 

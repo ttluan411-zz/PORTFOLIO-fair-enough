@@ -17,7 +17,7 @@ class BillList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      open: false
+      open: true
     };
   }
 
@@ -36,6 +36,8 @@ class BillList extends Component {
 
 
   render(){
+    console.log(this.props.billList, "message")
+
     const iconButtonElement = (
       <IconButton
         touch={true}
@@ -55,44 +57,49 @@ class BillList extends Component {
       <div className="billList-wrapper">
         <List>
           {this.props.billList.map((el,i) => {
-            console.log(el)
+
+            console.log("el here",el.bills)
+
             return (
               <ListItem
                 leftAvatar={<Avatar src={moneyAvatar} />}
                 rightIconButton={rightIconMenu}
-                initiallyOpen={true}
-                primaryText={el.billsname}
+                initiallyOpen={false}
+                key={i}
+                primaryText={el.bills.billsname}
                 primaryTogglesNestedList={true}
                 secondaryText={
                   <p>
-                    <span style={{color: darkBlack}}>{el.createtime}</span><br/>
-                    {el.amount}
+                    <span style={{color: darkBlack}}>{el.bills.createtime}</span><br/>
+                    {el.bills.amount}
                   </p>
                 }
                 secondaryTextLines={2}
+                //
                 nestedItems={[
-                  <ListItem
-                    key={1}
-                    primaryText="Starred"
-                  />,
-                  <ListItem
-                    key={2}
-                    primaryText="Sent Mail"
-                    disabled={true}
-                  />,
-                  <ListItem
-                    key={3}
-                    primaryText="Inbox"
-                    open={this.state.open}
-                    onNestedListToggle={this.handleNestedListToggle}
-                  />,
+
+                  el.bills.nestedlist.map((transaction,index) => {
+                    return(
+                        <ListItem
+                          key={index}
+                          secondaryText={
+                            <p>
+                             {transaction.borrowerid}
+                             {transaction.lenderid} : {transaction.amount}
+                           </p>
+                          }
+                        />
+                    )
+                  })
                 ]}
               />
             )
+
           })}
           <Divider inset={true} />
         </List>
-      </div>
+
+        </div>
     )
   }
 }

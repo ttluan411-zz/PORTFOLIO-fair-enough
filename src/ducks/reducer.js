@@ -5,14 +5,15 @@ const initialState = {
     friendList: [],
     bills: [],
     billList: [],
-    eventSelected: null,
+    eventSelected: null
 }
 
 const GETUSER = 'GETUSER',
       GETEVENTS = 'GETEVENTS',
       SELECTEVENT = 'SELECTEVENT',
       GETFRIENDS = 'GETFRIENDS',
-      GETBILLS = 'GETBILLS'
+      GETBILLS = 'GETBILLS',
+      GETTRANSACTION = 'GETTRANSACTION'
 
 export default function (state=initialState, action){
     switch (action.type) {
@@ -34,8 +35,12 @@ export default function (state=initialState, action){
             });
         case GETBILLS + '_FULFILLED':
             return Object.assign({},state,{
-              billList: action.payload
+              billList: action.payload.data
             });
+        case GETTRANSACTION + '_FULFILLED':
+            return Object.assign({}, state,{
+              transactionList: action.payload
+            })
 
         default:
             return state
@@ -73,10 +78,9 @@ export function getFriends(){
     payload: promise
   }
 }
-//GET BILL LIST IN EVENT
+//GET BILL LIST THAT MATCH EVENT
 export function getBills(i){
-  console.log('in getbills')
-  let promise = axios.get(`/api/main/getBills/${i}`).then(res => res.data)
+  let promise = axios.get(`/api/main/getBills/${i}`)
   return {
     type: GETBILLS,
     payload: promise
