@@ -18,10 +18,7 @@ export default function Landing(props){
                     {/*<div className="arrow-button"><img src="./a.png" alt="arrow"/></div>*/}
                 </button>
             </a>
-                <button className="log-in">
-                    NEW ACCOUNT
-                    {/*<div className="arrow-button"><img src="./a.png" alt="arrow"/></div>                    */}
-                </button>
+
             </div>
         </div>
     )

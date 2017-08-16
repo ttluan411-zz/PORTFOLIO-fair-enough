@@ -8,6 +8,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
 import AddBill from '../AddBill/AddBill';
 import BillList from '../BillList/BillList';
+import Balance from '../Balance/Balance';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import './EventItem.css';
@@ -70,7 +71,7 @@ class EventItem extends Component {
             <BillList eventId={eventId} />
           </div>
           <div>
-            slide n°3
+            
           </div>
         </SwipeableViews>
       </div>

@@ -8,73 +8,83 @@ const initialState = {
     eventSelected: null
 }
 
-const GETUSER = 'GETUSER',
-      GETEVENTS = 'GETEVENTS',
-      SELECTEVENT = 'SELECTEVENT',
-      GETFRIENDS = 'GETFRIENDS',
-      GETBILLS = 'GETBILLS',
-      GETTRANSACTION = 'GETTRANSACTION'
+const GET_USER = 'GET_USER',
+      GET_EVENTS = 'GET_EVENTS',
+      SELECT_EVENT = 'SELECT_EVENT',
+      GET_FRIENDS = 'GET_FRIENDS',
+      GET_BILLS = 'GET_BILLS',
+      GET_TRANSACTION = 'GET_TRANSACTION',
+      GET_AMOUNT_EACH_USER_OWE = 'GET_AMOUNT_EACH_USER_OWE',
+      GET_AMOUNT_EACH_USER_IS_OWED = 'GET_AMOUNT_EACH_USER_IS_OWED'
+
 
 export default function (state=initialState, action){
     switch (action.type) {
-        case GETUSER + '_FULFILLED':
+        case GET_USER + '_FULFILLED':
             return Object.assign({},state, {
-              user: action.payload
+              user: action.payload.data
             });
-        case GETEVENTS + '_FULFILLED':
+        case GET_EVENTS + '_FULFILLED':
             return Object.assign({},state,{
-              responseData: action.payload
+              responseData: action.payload.data
             });
-        case SELECTEVENT + '_FULFILLED':
+        case SELECT_EVENT + '_FULFILLED':
             return Object.assign({},state,{
-              responseData: action.payload
+              responseData: action.payload.data
             });
-        case GETFRIENDS + '_FULFILLED':
+        case GET_FRIENDS + '_FULFILLED':
             return Object.assign({},state,{
-              friendList: action.payload
+              friendList: action.payload.data
             });
-        case GETBILLS + '_FULFILLED':
+        case GET_BILLS + '_FULFILLED':
             return Object.assign({},state,{
               billList: action.payload.data
             });
-        case GETTRANSACTION + '_FULFILLED':
+        case GET_TRANSACTION + '_FULFILLED':
             return Object.assign({}, state,{
-              transactionList: action.payload
-            })
-
+              transactionList: action.payload.data
+            });
+        case GET_AMOUNT_EACH_USER_OWE + '_FULFILLED':
+            return Object.assign({}, state,{
+              transaction: action.payload.data
+            });
+        case GET_AMOUNT_EACH_USER_IS_OWED + '_FULFILLED':
+            return Object.assign({}, state,{
+              transaction: action.payload.data
+            });
         default:
             return state
     }
 }
 // GET LOGGED IN USER
 export function getUser(){
-  let promise = axios.get('/api/main').then(res => res.data)
+  let promise = axios.get('/api/main')
   return {
-    type: GETUSER,
+    type: GET_USER,
     payload: promise
   }
 }
 //GET EVENT LIST
 export function getEvents(){
-  let promise = axios.get(`/api/main/getEvent`).then(res => res.data)
+  let promise = axios.get(`/api/main/getEvent`)
     return {
-      type: GETEVENTS,
+      type: GET_EVENTS,
       payload: promise
     }
 }
 // GET SINGLE EVENT FOR SELECTED EVENT
 export function selectEvent(i){
-  let promise = axios.get(`/api/main/getEvent/${i}`).then(res => res.data)
+  let promise = axios.get(`/api/main/getEvent/${i}`)
   return {
-    type: SELECTEVENT,
+    type: SELECT_EVENT,
     payload: promise
   }
 }
 // GET ALL USERS
 export function getFriends(){
-  let promise = axios.get(`/api/main/getFriends`).then(res => res.data)
+  let promise = axios.get(`/api/main/getFriends`)
   return {
-    type: GETFRIENDS,
+    type: GET_FRIENDS,
     payload: promise
   }
 }
@@ -82,7 +92,22 @@ export function getFriends(){
 export function getBills(i){
   let promise = axios.get(`/api/main/getBills/${i}`)
   return {
-    type: GETBILLS,
+    type: GET_BILLS,
+    payload: promise
+  }
+}
+//GET BALANCE
+export function getAmountEachUserOwe(i){
+  let promise = axios.get(`/api/main/getAmountEachUserOwe/${i}`)
+  return {
+    type: GET_AMOUNT_EACH_USER_OWE,
+    payload: promise
+  }
+}
+export function getAmountEachUserIsOwed(i){
+  let promise = axios.get(`api/main/getAmountEachUserIsOwed/${i}`)
+  return {
+    type: GET_AMOUNT_EACH_USER_IS_OWED,
     payload: promise
   }
 }
