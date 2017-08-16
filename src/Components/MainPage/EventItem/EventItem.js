@@ -71,7 +71,7 @@ class EventItem extends Component {
             <BillList eventId={eventId} />
           </div>
           <div>
-            
+            <Balance />
           </div>
         </SwipeableViews>
       </div>

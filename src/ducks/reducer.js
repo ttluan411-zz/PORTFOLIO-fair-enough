@@ -5,7 +5,8 @@ const initialState = {
     friendList: [],
     bills: [],
     billList: [],
-    eventSelected: null
+    eventSelected: null,
+    balance:{}
 }
 
 const GET_USER = 'GET_USER',
@@ -14,8 +15,7 @@ const GET_USER = 'GET_USER',
       GET_FRIENDS = 'GET_FRIENDS',
       GET_BILLS = 'GET_BILLS',
       GET_TRANSACTION = 'GET_TRANSACTION',
-      GET_AMOUNT_EACH_USER_OWE = 'GET_AMOUNT_EACH_USER_OWE',
-      GET_AMOUNT_EACH_USER_IS_OWED = 'GET_AMOUNT_EACH_USER_IS_OWED'
+      GET_BALANCE_BY_EVENT = 'GET_BALANCE_BY_EVENT'
 
 
 export default function (state=initialState, action){
@@ -44,11 +44,7 @@ export default function (state=initialState, action){
             return Object.assign({}, state,{
               transactionList: action.payload.data
             });
-        case GET_AMOUNT_EACH_USER_OWE + '_FULFILLED':
-            return Object.assign({}, state,{
-              transaction: action.payload.data
-            });
-        case GET_AMOUNT_EACH_USER_IS_OWED + '_FULFILLED':
+        case GET_BALANCE_BY_EVENT+ '_FULFILLED':
             return Object.assign({}, state,{
               transaction: action.payload.data
             });
@@ -97,17 +93,17 @@ export function getBills(i){
   }
 }
 //GET BALANCE
-export function getAmountEachUserOwe(i){
-  let promise = axios.get(`/api/main/getAmountEachUserOwe/${i}`)
+// export function getAmountEachUserOwe(i){
+//   let promise = axios.get(`/api/main/getAmountEachUserOwe/${i}`)
+//   return {
+//     type: GET_AMOUNT_EACH_USER_OWE,
+//     payload: promise
+//   }
+// }
+export function getBalanceByEvent(i){
+  let promise = axios.get(`api/main/getBalanceByEvent/${i}`)
   return {
-    type: GET_AMOUNT_EACH_USER_OWE,
-    payload: promise
-  }
-}
-export function getAmountEachUserIsOwed(i){
-  let promise = axios.get(`api/main/getAmountEachUserIsOwed/${i}`)
-  return {
-    type: GET_AMOUNT_EACH_USER_IS_OWED,
+    type: GET_BALANCE_BY_EVENT,
     payload: promise
   }
 }
