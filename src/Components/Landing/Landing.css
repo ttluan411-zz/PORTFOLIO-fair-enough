@@ -1,3 +1,24 @@
+.Typist .Cursor {
+  display: inline-block; }
+
+.Typist .Cursor--blinking {
+  opacity: 1;
+  animation: blink 1s linear infinite; }
+
+.Typist {
+  font-size: 34px;
+  font-family: 'Roboto';
+  color: whitesmoke;
+  font-weight: lighter; }
+
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
 .landing-wrapper {
   display: flex;
   flex-direction: column;
@@ -12,22 +33,22 @@
   justify-content: center;
   padding: auto;
   width: 100%;
-  height: 200px;
+  height: 260px;
   font-family: 'Josefin Sans';
-  font-size: 36px;
+  animation: fade 0.2s;
+  font-size: 46px;
   font-weight: 100;
   color: white;
-  text-shadow: 0px 0px 30px black; }
+  text-shadow: 2px 2px 30px black; }
 
 @keyframes pulse {
   0% {
-    transform: scale(0.8);
-    transform: rotate(-10deg);
-    box-shadow: 0px 0px 10px white; }
+    transform: scale(1, 1); }
+  50% {
+    opacity: 0.3; }
   100% {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 100px white;
-    background-color: rgba(255, 255, 255, 0.9); } }
+    transform: scale(1.2);
+    opacity: 0; } }
 
 .logobox {
   display: flex;
@@ -35,58 +56,52 @@
   align-items: center;
   justify-content: center;
   padding: auto;
-  height: 300px; }
-  .logobox .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: auto;
-    height: 130px;
-    width: 130px;
-    animation: pulse 1s infinite alternate;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0px 0px 100px white; }
-    .logobox .logo img {
-      margin: auto;
-      height: 90px;
-      width: 90px; }
+  height: 200px; }
 
-.account {
+.button-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: auto;
-  margin-top: 38px;
   height: 200px; }
-  .account button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: auto;
-    background: transparent;
-    flex-direction: row;
-    height: 100px;
-    width: 100%;
-    border: none;
-    border-top: solid 1px white;
-    font-family: 'Josefin Sans';
-    font-weight: 200;
-    color: white;
-    font-size: 18px; }
-    .account button .arrow-button {
-      height: 80px;
-      width: 80px; }
-      .account button .arrow-button img {
-        height: 40px;
-        width: 40px; }
+
+.shadow,
+.Login-button {
+  position: absolute;
+  width: 180px;
+  height: 40px; }
+
+.shadow {
+  animation: pulse 1.2s ease infinite;
+  background: #5effee; }
 
 .log-in {
-  width: 100vw !important;
-  border-top: 1px white solid; }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: auto;
+  height: 40px;
+  width: 180px;
+  border: none;
+  background-color: #1be1d0;
+  font-family: 'Roboto';
+  font-weight: 400;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+  z-index: 99; }
 
 a {
   text-decoration: none; }
+
+.service-box {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: auto; }
