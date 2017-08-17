@@ -2,11 +2,13 @@ import axios from 'axios'
 const initialState = {
     user: {},
     responseData: [],
-    friendList: [],
     bills: [],
     billList: [],
+    friendList: [],
     eventSelected: null,
-    balance:{}
+    balance:{},
+    userEmails:[],
+    friendGroup:[]
 }
 
 const GET_USER = 'GET_USER',
@@ -15,7 +17,9 @@ const GET_USER = 'GET_USER',
       GET_FRIENDS = 'GET_FRIENDS',
       GET_BILLS = 'GET_BILLS',
       GET_TRANSACTION = 'GET_TRANSACTION',
-      GET_BALANCE_BY_EVENT = 'GET_BALANCE_BY_EVENT'
+      GET_EMAILS = 'GET_EMAILS',
+      GET_BALANCE_BY_EVENT = 'GET_BALANCE_BY_EVENT',
+      SEARCH_USER = 'SEARCH_USER'
 
 
 export default function (state=initialState, action){
@@ -37,6 +41,10 @@ export default function (state=initialState, action){
             return Object.assign({},state,{
               friendList: action.payload.data
             });
+        case GET_EMAILS + '_FULFILLED':
+            return Object.assign({},state,{
+              userEmails: [].concat.apply([], action.payload.data.map(Object.values))
+            });
         case GET_BILLS + '_FULFILLED':
             return Object.assign({},state,{
               billList: action.payload.data
@@ -49,6 +57,10 @@ export default function (state=initialState, action){
             return Object.assign({}, state,{
               balance: action.payload.data
             });
+        case SEARCH_USER + '_FULFILLED':
+            return Object.assign({}, state,{
+              friendGroup: action.payload.data
+            })
         default:
             return state
     }
@@ -85,6 +97,22 @@ export function getFriends(){
     payload: promise
   }
 }
+//GET ALL USER EMAILS
+export function getUserEmails(){
+  let promise = axios.get(`/api/main/getEmails`)
+  return {
+    type: GET_EMAILS,
+    payload: promise
+  }
+}
+//GET USER BY EMAIL
+export function searchUserByEmail(email){
+  let promise = axios.get(`/api/main/searchUser/${email}`)
+  return {
+    type: SEARCH_USER,
+    payload: promise
+  }
+}
 //GET BILL LIST THAT MATCH EVENT
 export function getBills(i){
   let promise = axios.get(`/api/main/getBills/${i}`)
@@ -93,6 +121,7 @@ export function getBills(i){
     payload: promise
   }
 }
+
 //GET BALANCE
 // export function getAmountEachUserOwe(i){
 //   let promise = axios.get(`/api/main/getAmountEachUserOwe/${i}`)

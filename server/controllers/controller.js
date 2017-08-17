@@ -43,6 +43,27 @@ module.exports = {
       res.status(200).send(bills)
     }).catch(err=> console.log(err))
   },
+  getUserEmails: (req, res, next) => {
+    const db = req.app.get('db');
+    db.users.get_emails()
+    .then(emails => res.status(200).send(emails)).catch(err => console.log(err))
+  },
+  searchUserByEmail: (req,res,next) => {
+    console.log('email here',req.params.email)
+    const db = req.app.get('db');
+    db.users.search_user(req.params.email)
+    .then(user => {
+      console.log(user);
+      res.status(200).send(user)}).catch(err => console.log(err))
+  },
+
+
+
+
+
+
+
+
 //   getBalanceByEvent: (req, res, next) => {
 //     let amount_lended = 0
 //     let balance = 0
@@ -62,4 +83,4 @@ module.exports = {
 //     }).catch(err => console.log(err))
 //   })
 //   },
-// }
+}

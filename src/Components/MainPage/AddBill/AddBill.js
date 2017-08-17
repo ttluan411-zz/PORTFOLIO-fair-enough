@@ -4,11 +4,13 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import { getFriends, getBills } from '../../../ducks/reducer';
+import { getFriends, getBills, getUserEmails } from '../../../ducks/reducer';
 import { connect } from 'react-redux';
 import './AddBill.css';
 import axios from 'axios';
 import moment from 'moment';
+import AutoComplete from 'material-ui/AutoComplete';
+// import SearchBar from 'material-ui-search-bar';
 
 const styles = {
   customWidth: {
@@ -30,10 +32,12 @@ class AddBill extends Component {
     date: '',
     friendGroup: [],
     eventId: this.props.eventId,
-    isSettled: false
+    isSettled: false,
+    inputValue: ''
   };
 
   componentDidMount(){
+    this.props.getUserEmails()
     this.props.getFriends()
   };
 
@@ -56,6 +60,7 @@ class AddBill extends Component {
     })
   }
 
+
   selectionRenderer = (friendGroup) => {
     switch (friendGroup.length) {
       case 0:
@@ -69,7 +74,7 @@ class AddBill extends Component {
 
   render() {
     const { friendList } = this.props
-    // console.log(this.state.friendGroup)
+    console.log(this.props.userEmails)
     return (
       <div className="addBill-wrapper">
         <TextField
@@ -96,6 +101,14 @@ class AddBill extends Component {
           <MenuItem value={"¥"} primaryText="¥" />
         </SelectField>
         <br />
+        <AutoComplete
+          floatingLabelText="Search friends by emails"
+          filter={AutoComplete.fuzzyFilter}
+          dataSource={this.props.userEmails}
+          maxSearchResults={2}
+          onNewRequest={this.handleChooseUser}
+        />
+
         <SelectField
           floatingLabelText="Paid by"
           value={this.state.paidUserId}
@@ -127,7 +140,6 @@ class AddBill extends Component {
             />
           ))}
         </SelectField>
-
         <SelectField
           floatingLabelText="Devide"
           value={this.state.devideMethod}
@@ -155,4 +167,4 @@ class AddBill extends Component {
 }
 export default connect((state) => {
   return state;
-},{getFriends, getBills})(AddBill);
+},{getFriends, getBills, getUserEmails})(AddBill);

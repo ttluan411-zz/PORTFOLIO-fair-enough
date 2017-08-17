@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
 import AddBill from '../AddBill/AddBill';
+import AddFriend from '../AddFriend/AddFriend';
 import BillList from '../BillList/BillList';
 import Balance from '../Balance/Balance';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -56,14 +57,18 @@ class EventItem extends Component {
           onChange={this.handleChange}
           value={this.state.slideIndex}
         >
-          <Tab label="Add Expenses" value={0} />
-          <Tab label="Expense List" value={1} />
-          <Tab label="Balance" value={2} onClick={this.handleClick} />
+          <Tab label="Add Friends" value={0} />
+          <Tab label="Add Expenses" value={1} />
+          <Tab label="Expense List" value={2} />
+          <Tab label="Balance" value={3} onClick={this.handleClick} />
         </Tabs>
         <SwipeableViews
           index={this.state.slideIndex}
           onChangeIndex={this.handleChange}
         >
+          <div>
+          <AddFriend/>
+          </div>
           <div className="addBill-wrapper">
             <AddBill eventId={eventId} onSave={this.handleChange}/>
           </div>
