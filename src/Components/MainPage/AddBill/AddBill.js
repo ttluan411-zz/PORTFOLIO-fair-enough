@@ -48,7 +48,7 @@ class AddBill extends Component {
   };
   handleDateSubmit = (x,date) => { this.setState({date}) }
   handleSaveBill = () => {
-    axios.post('/api/main/createBill', this.state).then(res=> console.log("New bill added"))
+    axios.post('/api/main/createBill', this.state).then(res=> console.log(res))
     .then(() => {
       this.props.onSave(1);
       console.log('here')

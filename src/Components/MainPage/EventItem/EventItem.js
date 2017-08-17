@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { selectEvent } from '../../../ducks/reducer';
+import { selectEvent, getBalanceByEvent } from '../../../ducks/reducer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
@@ -22,8 +21,9 @@ class EventItem extends Component {
   componentDidMount(){
     this.props.selectEvent(this.props.match.params.id)
   }
-  handleTouchTap = () => {
-    // console.log('abc')
+
+  handleClick = () => {
+    this.props.getBalanceByEvent(this.props)
   }
 
   handleChange = (value) => {
@@ -58,7 +58,7 @@ class EventItem extends Component {
         >
           <Tab label="Add Expenses" value={0} />
           <Tab label="Expense List" value={1} />
-          <Tab label="Balance" value={2} />
+          <Tab label="Balance" value={2} onClick={this.handleClick} />
         </Tabs>
         <SwipeableViews
           index={this.state.slideIndex}
@@ -80,4 +80,4 @@ class EventItem extends Component {
 }
 export default connect((state) => {
   return state;
-},{selectEvent})(EventItem);
+},{selectEvent, getBalanceByEvent})(EventItem);

@@ -84,7 +84,7 @@ app.get('/api/main/getEvent', controller.getEvents)
 app.get('/api/main/getEvent/:id',controller.selectEvent)
 app.get('/api/main/getFriends',controller.getFriends)
 app.get('/api/main/getBills/:id', controller.getBills)
-
+app.post('/api/main/getBalanceByEvent', controller.getBalanceByEvent)
 // app.get('/api/main/signout', funtion(req,res){
 //   req.logout();
 //   res.status(200).redirect('http://localhost:3000')

@@ -11,14 +11,12 @@ import { getBalanceByEvent } from '../../../ducks/reducer';
 
   }
 
-
   render(){
-    const {friendList} = this.props
-
+    const  {getBalanceByEvent} = this.props
     return(
       <div className="Balance-wrapper">
         <List>
-          {console.log(this.props)}
+        
         </List>
       </div>
 

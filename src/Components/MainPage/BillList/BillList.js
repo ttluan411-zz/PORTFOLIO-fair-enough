@@ -78,9 +78,7 @@ class BillList extends Component {
                           key={index}
                           secondaryText={
                             <p>
-
-                             {borrower.givenname} owes {lender.givenname}
-                             : {transaction.amount}
+                             {borrower.givenname} owes {lender.givenname} : {transaction.amount}
                            </p>
                           }
                         />

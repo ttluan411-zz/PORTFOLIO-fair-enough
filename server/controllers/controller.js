@@ -32,6 +32,7 @@ module.exports = {
       .catch(err => console.log(err))}
       })
     }).then((bill) => {
+      console.log(bill)
       res.status(200).send(bill)
     }).catch(err => console.log(err))
   },
@@ -42,9 +43,23 @@ module.exports = {
       res.status(200).send(bills)
     }).catch(err=> console.log(err))
   },
-  // getBalanceByEvent: (req, res, next) => {
-  //   const db = req.app.get('db');
-  //   db.bills.getBalanceByEvent([req.param.id])
-  // },
-
-}
+//   getBalanceByEvent: (req, res, next) => {
+//     let amount_lended = 0
+//     let balance = 0
+//     let amount_borrowed = 0
+//     const db = req.app.get('db');
+//     console.log('here',req.body)
+//     req.body.friendList.forEach((person)=>{
+//       db.bills.get_amount_is_owed([req.body.match.params.id, person.userid])
+//       .then(amount_lended => {
+//         amount_lended = !amount_lended ? 0 : amount_lended
+//         console.log(amount_lended)
+//       db.bills.get_amount_owes([req.body.match.params.id, person.userid])
+//     }).then(amount_borrowed => {
+//         // amount_borrowed = !amount_borrowed ? 0 : amount_borrowed
+//
+//       res.status(200).send(amount_borrowed)
+//     }).catch(err => console.log(err))
+//   })
+//   },
+// }

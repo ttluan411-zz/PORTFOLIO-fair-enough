@@ -30,7 +30,8 @@ export default function (state=initialState, action){
             });
         case SELECT_EVENT + '_FULFILLED':
             return Object.assign({},state,{
-              responseData: action.payload.data
+              responseData: action.payload.data,
+              eventSelected: action.payload.data
             });
         case GET_FRIENDS + '_FULFILLED':
             return Object.assign({},state,{
@@ -44,9 +45,9 @@ export default function (state=initialState, action){
             return Object.assign({}, state,{
               transactionList: action.payload.data
             });
-        case GET_BALANCE_BY_EVENT+ '_FULFILLED':
+        case GET_BALANCE_BY_EVENT + '_FULFILLED':
             return Object.assign({}, state,{
-              transaction: action.payload.data
+              balance: action.payload.data
             });
         default:
             return state
@@ -101,7 +102,8 @@ export function getBills(i){
 //   }
 // }
 export function getBalanceByEvent(i){
-  let promise = axios.get(`api/main/getBalanceByEvent/${i}`)
+  console.log(i)
+  let promise = axios.post(`/api/main/getBalanceByEvent`,i)
   return {
     type: GET_BALANCE_BY_EVENT,
     payload: promise
