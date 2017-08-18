@@ -25,7 +25,7 @@ class EventItem extends Component {
   }
 
   handleClick = () => {
-    this.props.getBalanceByEvent(this.props)
+    this.props.getBalanceByEvent(this.props.match.params.id)
   }
 
   handleChange = (value) => {

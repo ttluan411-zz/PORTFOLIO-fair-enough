@@ -17,7 +17,7 @@ class BillList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      open: true
+      open: true,
     };
   }
 
@@ -74,8 +74,8 @@ class BillList extends Component {
 
                     let borrowerId =transaction.borrowerid
                     let lenderId =transaction.lenderid
-                    let borrower = this.props.friendGroup.filter((e)=> e.userid == borrowerId)[0]
-                    let lender = this.props.friendGroup.filter((e)=> e.userid == lenderId)[0]
+                    let borrower = this.props.friendList.filter((e)=> e.userid == borrowerId)[0]
+                    let lender = this.props.friendList.filter((e)=> e.userid == lenderId)[0]
                     console.log(this.props.friendGroup, borrower, lender)
                     return(
                         <ListItem

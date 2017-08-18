@@ -88,7 +88,7 @@ app.get('/api/main/getEmails', controller.getUserEmails)
 app.get('/api/main/searchUser/:email/:eventid', controller.searchUserByEmail)
 // app.get('/api/main/searchUser/:email', )
 
-// app.post('/api/main/getBalanceByEvent', controller.getBalanceByEvent)
+app.get('/api/main/getBalanceByEvent/:id', controller.getBalanceByEvent)
 
 
 // app.get('/api/main/signout', funtion(req,res){

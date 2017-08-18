@@ -27,7 +27,7 @@ module.exports = {
     db.bills.create_bill([req.body.billName, req.body.amount, moment(req.body.date).format("MMM Do YY"),
                           req.body.currency, req.body.paidUserId, req.body.eventId, req.body.devideMethod, req.body.isSettled])
     .then((created)=> {
-        db.bills.update_lent_amount([req.body.paidUserId, req.body.amount - (req.body.amount / (req.body.amount/req.body.sharingFriend.length))])
+        db.bills.update_lent_amount([req.body.paidUserId, req.body.amount - average])
         .then(updated_lent => {
           console.log('toi day')
           req.body.sharingFriend.forEach((person)=> {
@@ -39,10 +39,6 @@ module.exports = {
         res.status(200).send('successed')
       }).catch( err => res.status(500).send(err))
     })
-    // .then((bill) => {
-    //   console.log('error here',bill)
-    //   res.status(200).send(bill)
-    // }).catch(err => console.log(err))
   },
   getBills: (req, res, next) => {
 
@@ -70,30 +66,10 @@ module.exports = {
       res.status(200).send(user)}).catch(err => console.log(err))
   },
 
-
-
-
-
-
-
-
-//   getBalanceByEvent: (req, res, next) => {
-//     let amount_lended = 0
-//     let balance = 0
-//     let amount_borrowed = 0
-//     const db = req.app.get('db');
-//     console.log('here',req.body)
-//     req.body.friendList.forEach((person)=>{
-//       db.bills.get_amount_is_owed([req.body.match.params.id, person.userid])
-//       .then(amount_lended => {
-//         amount_lended = !amount_lended ? 0 : amount_lended
-//         console.log(amount_lended)
-//       db.bills.get_amount_owes([req.body.match.params.id, person.userid])
-//     }).then(amount_borrowed => {
-//         // amount_borrowed = !amount_borrowed ? 0 : amount_borrowed
-//
-//       res.status(200).send(amount_borrowed)
-//     }).catch(err => console.log(err))
-//   })
-//   },
+  getBalanceByEvent: (req, res, next) => {
+    console.log(req.params.id)
+    const db = req.app.get('db');
+    db.friends.get_friends_balance(req.params.id)
+    .then(balance => res.status(200).send(balance)).catch(err => console.log(err))
+  },
 }

@@ -6,7 +6,7 @@ const initialState = {
     billList: [],
     friendList: [],
     eventSelected: null,
-    balance:{},
+    balance: [],
     userEmails:[],
     friendGroup:[]
 }
@@ -135,7 +135,7 @@ export function getBills(i){
 // }
 export function getBalanceByEvent(i){
   console.log(i)
-  let promise = axios.post(`/api/main/getBalanceByEvent`,i)
+  let promise = axios.get(`/api/main/getBalanceByEvent/${i}`)
   return {
     type: GET_BALANCE_BY_EVENT,
     payload: promise
