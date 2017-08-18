@@ -5,6 +5,8 @@ import AutoComplete from 'material-ui/AutoComplete';
 import RaisedButton from 'material-ui/RaisedButton';
 import SearchBar from 'material-ui-search-bar';
 import { searchUserByEmail } from '../../../ducks/reducer';
+import Chip from 'material-ui/Chip';
+import Avatar from 'material-ui/Avatar';
 
 class AddFriend extends Component {
   constructor(props){
@@ -13,10 +15,13 @@ class AddFriend extends Component {
 
 
     this.state = {
-       inputText: ''
+       inputText: '',
+       friendsGoing: []
      };
      this.handleChange = this.handleChange.bind(this)
      this.handleClick = this.handleClick.bind(this)
+     this.handleTouchTap = this.handleTouchTap.bind(this)
+     this.handleSwitchTap = this.handleSwitchTap.bind(this)
    }
 
 
@@ -27,14 +32,31 @@ class AddFriend extends Component {
         })
       }
       handleClick(){
-        this.props.searchUserByEmail(this.state.inputText)
+        //only run this code if inputText has value
+        this.state.friendsGoing.push(this.state.inputText)
+        this.props.searchUserByEmail(this.state.inputText, this.props.eventSelected[0].eventid, this.props)
         this.setState({
           inputText:''
         })
       }
+      handleTouchTap(){
+        console.log('clicked')
+      }
+      handleRequestDelete(){
+        console.log('delete')
+      }
+      handleSwitchTap(){
+        this.props.onSave(1);
+      }
+
 
     render() {
-      console.log(this.props.userEmails)
+      const styles = {
+        chip: {
+          margin: 8,
+        }
+      }
+      console.log(this.props.friendGroup)
       return(
         <div>
         <SearchBar
@@ -47,8 +69,21 @@ class AddFriend extends Component {
            maxWidth: 600
           }}
         />
-        <RaisedButton label="Add" secondary={true} onClick={this.handleClick}/>
-        <RaisedButton label="Done" primary={true} />
+        {this.props.friendGroup.map((el,i) => {
+          return (
+          <Chip
+           key={i}
+           onRequestDelete={this.handleRequestDelete}
+           onClick={this.handleTouchTap}
+           style = {styles.chip}
+           >
+           <Avatar src={el.picture} />
+           {el.givenname} {el.familyname}
+         </Chip>
+       )
+       })}
+       <RaisedButton label="Add" primary={true} onClick={this.handleClick}/>
+       <RaisedButton label="Done" secondary={true}  onClick={this.handleSwitchTap} />
         </div>
        )
     }

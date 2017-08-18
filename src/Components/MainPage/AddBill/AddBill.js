@@ -20,7 +20,6 @@ const styles = {
 const button_style = {
   margin: 12,
 };
-
 class AddBill extends Component {
 
   state = {
@@ -30,51 +29,50 @@ class AddBill extends Component {
     paidUserId: '',
     devideMethod: '',
     date: '',
-    friendGroup: [],
+    sharingFriend: [],
     eventId: this.props.eventId,
     isSettled: false,
-    inputValue: ''
+    inputValue: '',
+
   };
 
   componentDidMount(){
     this.props.getUserEmails()
     this.props.getFriends()
   };
-
   handleChangeBillName =(e) => { this.setState({billName:e.target.value}) };
   handleChangeBillAmount =(e) => { this.setState({amount:e.target.value}) }
   handleChange1 = (event, index, value) => this.setState({currency: value});
   handleChange2 = (event, index, value) => this.setState({paidUserId: value});
   handleChange3 = (event, index, value) => this.setState({devideMethod: value});
-  handleChange4 = (event, index, friendGroup) => {
-    this.setState({friendGroup});
-    axios.post('/api/main')
+  handleChange4 = (event, index, sharingFriend) => {
+    this.setState({sharingFriend});
   };
   handleDateSubmit = (x,date) => { this.setState({date}) }
   handleSaveBill = () => {
-    axios.post('/api/main/createBill', this.state).then(res=> console.log(res))
-    .then(() => {
-      this.props.onSave(1);
-      console.log('here')
+    console.log('axios toi roi ne')
+    axios.post('/api/main/createBill', this.state)
+    .then((res) => {
+      this.props.onSave(2);
+      console.log(res)
       this.props.getBills(this.state.eventId);
     })
   }
 
 
-  selectionRenderer = (friendGroup) => {
-    switch (friendGroup.length) {
+  selectionRenderer = (sharingFriend) => {
+    // console.log('here friend',sharingFriend)
+    switch (sharingFriend.length) {
       case 0:
         return '';
-      case 1:
-        return friendGroup[0];
       default:
-        return `${friendGroup.length} persons selected`;
+        return `${sharingFriend.length} persons selected`;
     }
   }
 
   render() {
-    const { friendList } = this.props
-    console.log(this.props.userEmails)
+    const { friendGroup } = this.props
+    // console.log(friendGroup)
     return (
       <div className="addBill-wrapper">
         <TextField
@@ -99,23 +97,14 @@ class AddBill extends Component {
           <MenuItem value={"€"} primaryText="€" />
           <MenuItem value={"£"} primaryText="£" />
           <MenuItem value={"¥"} primaryText="¥" />
-        </SelectField>
-        <br />
-        <AutoComplete
-          floatingLabelText="Search friends by emails"
-          filter={AutoComplete.fuzzyFilter}
-          dataSource={this.props.userEmails}
-          maxSearchResults={2}
-          onNewRequest={this.handleChooseUser}
-        />
-
+        </SelectField><br />
         <SelectField
           floatingLabelText="Paid by"
           value={this.state.paidUserId}
           onChange={this.handleChange2}
           style={styles.customWidth}
         >
-        {friendList.map((el,i)=> {
+        {friendGroup.map((el,i)=> {
           return (
             <MenuItem key={i} value={el.userid} primaryText={el.givenname} />
           )
@@ -125,23 +114,23 @@ class AddBill extends Component {
 
         <SelectField
           multiple={true}
-          hintText="Select a name"
-          value={this.state.friendGroup}
+          hintText="Select name"
+          value={this.state.sharingFriend}
           onChange={this.handleChange4}
           selectionRenderer={this.selectionRenderer}
         >
-          {friendList.map((user,i) => (
+          {friendGroup.map((user,i) => (
             <MenuItem
               key={i}
               insetChildren={true}
-              checked={this.state.friendGroup.indexOf(user.value) > -1}
+              checked={this.state.sharingFriend.indexOf(user.value) > -1}
               value={user.userid}
               primaryText={user.givenname}
             />
           ))}
         </SelectField>
         <SelectField
-          floatingLabelText="Devide"
+          floatingLabelText="Divide"
           value={this.state.devideMethod}
           onChange={this.handleChange3}
           style={styles.customWidth}

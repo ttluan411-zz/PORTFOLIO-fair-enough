@@ -46,6 +46,8 @@ export default function (state=initialState, action){
               userEmails: [].concat.apply([], action.payload.data.map(Object.values))
             });
         case GET_BILLS + '_FULFILLED':
+        console.log('it hit this point',action.payload.data)
+
             return Object.assign({},state,{
               billList: action.payload.data
             });
@@ -58,8 +60,9 @@ export default function (state=initialState, action){
               balance: action.payload.data
             });
         case SEARCH_USER + '_FULFILLED':
+        console.log(action.payload.data)
             return Object.assign({}, state,{
-              friendGroup: action.payload.data
+              friendGroup: [...state.friendGroup,action.payload.data[0]]
             })
         default:
             return state
@@ -106,8 +109,8 @@ export function getUserEmails(){
   }
 }
 //GET USER BY EMAIL
-export function searchUserByEmail(email){
-  let promise = axios.get(`/api/main/searchUser/${email}`)
+export function searchUserByEmail(email, eventid){
+  let promise = axios.get(`/api/main/searchUser/${email}/${eventid}`)
   return {
     type: SEARCH_USER,
     payload: promise

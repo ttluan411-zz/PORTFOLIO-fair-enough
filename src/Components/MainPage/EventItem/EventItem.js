@@ -17,6 +17,7 @@ class EventItem extends Component {
     super(props);
     this.state = {
        slideIndex: 0
+
     };
   }
   componentDidMount(){
@@ -67,7 +68,7 @@ class EventItem extends Component {
           onChangeIndex={this.handleChange}
         >
           <div>
-          <AddFriend/>
+          <AddFriend onSave={this.handleChange}/>
           </div>
           <div className="addBill-wrapper">
             <AddBill eventId={eventId} onSave={this.handleChange}/>

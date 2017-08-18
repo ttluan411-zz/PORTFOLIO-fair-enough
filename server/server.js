@@ -85,7 +85,7 @@ app.get('/api/main/getEvent/:id',controller.selectEvent)
 app.get('/api/main/getFriends',controller.getFriends)
 app.get('/api/main/getBills/:id', controller.getBills)
 app.get('/api/main/getEmails', controller.getUserEmails)
-app.get('/api/main/searchUser/:email', controller.searchUserByEmail)
+app.get('/api/main/searchUser/:email/:eventid', controller.searchUserByEmail)
 // app.get('/api/main/searchUser/:email', )
 
 // app.post('/api/main/getBalanceByEvent', controller.getBalanceByEvent)
