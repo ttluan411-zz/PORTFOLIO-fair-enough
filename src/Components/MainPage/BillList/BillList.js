@@ -53,7 +53,6 @@ class BillList extends Component {
       <div className="billList-wrapper">
         <List>
           {this.props.billList.map((el,i) => {
-            console.log(el)
             return (
               <ListItem
                 leftAvatar={<Avatar src={moneyAvatar} />}
@@ -76,7 +75,6 @@ class BillList extends Component {
                     let lenderId =transaction.lenderid
                     let borrower = this.props.friendList.filter((e)=> e.userid == borrowerId)[0]
                     let lender = this.props.friendList.filter((e)=> e.userid == lenderId)[0]
-                    console.log(this.props.friendGroup, borrower, lender)
                     return(
                         <ListItem
                           key={index}

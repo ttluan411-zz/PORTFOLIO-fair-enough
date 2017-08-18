@@ -45,7 +45,9 @@ class EventItem extends Component {
       }
     }
     // console.log( responseData, this.props.match.params.id)
-    const eventId = this.props.match.params.id;
+    const eventId = this.props.match.params.id,
+    balance = this.props.balance
+
     return(
       <div className="eventItem-wrapper">
       <AppBar
@@ -74,10 +76,10 @@ class EventItem extends Component {
             <AddBill eventId={eventId} onSave={this.handleChange}/>
           </div>
           <div>
-            <BillList eventId={eventId} />
+            <BillList eventId={eventId}  />
           </div>
           <div>
-            <Balance />
+            <Balance balance={balance}  />
           </div>
         </SwipeableViews>
       </div>

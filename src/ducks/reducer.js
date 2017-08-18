@@ -8,7 +8,7 @@ const initialState = {
     eventSelected: null,
     balance: [],
     userEmails:[],
-    friendGroup:[]
+    friendGroup:[],
 }
 
 const GET_USER = 'GET_USER',
