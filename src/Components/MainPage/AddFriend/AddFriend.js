@@ -32,7 +32,6 @@ class AddFriend extends Component {
         })
       }
       handleClick(){
-        //only run this code if inputText has value
         this.state.friendsGoing.push(this.state.inputText)
         this.props.searchUserByEmail(this.state.inputText, this.props.eventSelected[0].eventid, this.props)
         this.setState({

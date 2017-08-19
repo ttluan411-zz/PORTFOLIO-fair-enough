@@ -5,6 +5,7 @@ import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import { getBalanceByEvent } from '../../../ducks/reducer';
 import {Bar} from 'react-chartjs-2';
+import Payment from './Payment';
 
 
 
@@ -12,16 +13,26 @@ import {Bar} from 'react-chartjs-2';
  class Balance extends Component {
   constructor(props){
     super(props);
+
     this.state = {
       chartData: {
         labels: [],
         datasets: [
           {
+            label:['Balance'],
             data: [],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)'
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)',
+              'rgba(147, 250, 209, 0.7)'
             ]
           }
         ]
@@ -31,7 +42,7 @@ import {Bar} from 'react-chartjs-2';
   }
 
  componentWillReceiveProps(nextprops){
-   console.log(nextprops.balance)
+   console.log(nextprops)
     const labels = []
      ,balance = []
      nextprops.balance.forEach((el) => {
@@ -65,23 +76,12 @@ import {Bar} from 'react-chartjs-2';
  }
 
   render(){
-    const  {balance,getBalanceByEvent} = this.props
+    const  {balance,getBalanceByEvent, user } = this.props
     console.log(this.props)
 
     return(
       <div className="Balance-wrapper">
-        <List>
-          {balance.map((el,i) => {
-            return(
-              <ListItem
-                // leftAvatar={<Avatar src={} />}
-                // rightIconButton={rightIconMenu}
-                initiallyOpen={false}
-                key={i}
-                primaryText={el.friendname}
-                secondaryText={el.balance} />
-            )})}
-          </List>
+
           <div className = "chart">
           <Bar
           	data={this.state.chartData}
@@ -102,6 +102,7 @@ import {Bar} from 'react-chartjs-2';
             </div>
           <div className="button-div">
           <RaisedButton label="Full width" fullWidth={true} />
+          <Payment balance={balance} user={user}/>
           </div>
       </div>
 
@@ -113,3 +114,20 @@ import {Bar} from 'react-chartjs-2';
 export default connect(state => {
   return state;
 },{getBalanceByEvent})(Balance)
+
+
+
+
+//
+// <List>
+//   {balance.map((el,i) => {
+//     return(
+//       <ListItem
+//         // leftAvatar={<Avatar src={} />}
+//         // rightIconButton={rightIconMenu}
+//         initiallyOpen={false}
+//         key={i}
+//         primaryText={el.friendname}
+//         secondaryText={el.balance} />
+//     )})}
+//   </List>
