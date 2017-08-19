@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import {List, ListItem} from 'material-ui/List';
-import RaisedButton from 'material-ui/RaisedButton';
+
 import { getBalanceByEvent } from '../../../ducks/reducer';
 import {Bar} from 'react-chartjs-2';
 import Payment from './Payment';
@@ -22,17 +22,41 @@ import Payment from './Payment';
             label:['Balance'],
             data: [],
             backgroundColor: [
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)',
-              'rgba(147, 250, 209, 0.7)'
+              'rgb(1, 224, 223)',
+              'rgb(1, 224, 223)',
+              'rgb(1, 224, 223)',
+              'rgb(1, 224, 223)',
+              'rgb(1, 224, 223)',
+              'rgb(1, 224, 223)',
+              'rgb(1, 224, 223)',
+              'rgb(1, 224, 223)'
+            ]
+          },
+          {
+            label:['Borrowed'],
+            data: [],
+            backgroundColor: [
+              'rgb(248, 150, 208)',
+              'rgb(248, 150, 208)',
+              'rgb(248, 150, 208)',
+              'rgb(248, 150, 208)',
+              'rgb(248, 150, 208)',
+              'rgb(248, 150, 208)',
+              'rgb(248, 150, 208)',
+              'rgb(248, 150, 208)'
+            ]
+          },{
+            label:['Lent'],
+            data: [],
+            backgroundColor: [
+              'rgb(151, 113, 254)',
+              'rgb(151, 113, 254)',
+              'rgb(151, 113, 254)',
+              'rgb(151, 113, 254)',
+              'rgb(151, 113, 254)',
+              'rgb(151, 113, 254)',
+              'rgb(151, 113, 254)',
+              'rgb(151, 113, 254)'
             ]
           }
         ]
@@ -45,13 +69,21 @@ import Payment from './Payment';
    console.log(nextprops)
     const labels = []
      ,balance = []
+     ,borrowed = []
+     ,lent = []
+
      nextprops.balance.forEach((el) => {
        labels.push(el.friendname)
        balance.push(el.balance)
+       borrowed.push(el.borrowed * (-1))
+       lent.push(el.lent)
      })
      const chartData = Object.assign({}, this.state.chartData)
      chartData.labels = labels;
-     chartData.datasets[0].data = balance
+     chartData.datasets[0].data = balance;
+     chartData.datasets[1].data = borrowed;
+     chartData.datasets[2].data = lent;
+
      console.log(chartData)
      this.setState({
        chartData: chartData
@@ -101,7 +133,6 @@ import Payment from './Payment';
           />
             </div>
           <div className="button-div">
-          <RaisedButton label="Full width" fullWidth={true} />
           <Payment balance={balance} user={user}/>
           </div>
       </div>

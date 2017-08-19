@@ -23,11 +23,15 @@ class MainPage extends Component {
                     <div className="mainpage-logo">F A I R E N O U G H</div>
                     <div className="profile-box">
                       <img src={user.picture} />
-                      <p>{!user.givenname ? null : user.givenname }</p>
+                      <p>Hi {!user.givenname ? null : user.givenname }!</p>
+                      <div className="line"></div>
                     </div>
+
                 </div>
                 <div className="mainpage-body">
-                <AddEvent/>
+                  <div className="create-event-button">
+                    <AddEvent/>
+                  </div>
                 <EventList/>
                 </div>
             </div>

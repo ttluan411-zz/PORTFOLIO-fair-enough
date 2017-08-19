@@ -24,7 +24,8 @@
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, #B479C3, #6CD5F9); }
+  background: linear-gradient(45deg, #B479C3, #6CD5F9);
+  overflow: hidden; }
 
 .header {
   display: flex;
@@ -39,7 +40,7 @@
   font-size: 46px;
   font-weight: 100;
   color: white;
-  text-shadow: 2px 2px 30px black; }
+  text-shadow: 2px 2px 5px black; }
 
 @keyframes pulse {
   0% {
@@ -66,15 +67,55 @@
   padding: auto;
   height: 200px; }
 
+a {
+  text-decoration: none; }
+
+.universe {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: absolute; }
+
+.universe:before {
+  content: "";
+  box-shadow: 10vw 1vh #fff, 14vw 29vh 2px #FFF, 23vw 34vh 1px #FFF, 1vw 99vh 1px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 85vw 78vh #fff;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  border-radius: 20px;
+  animation: starsFloating 30s -40s linear both infinite; }
+
+.universe:after {
+  content: "";
+  box-shadow: 37vw 78vh #fff, 17vw 69vh #FFF, 68vw 4vh 1px 1px #FFF, 98vw 9vh 1px 1px #FFF, 45vw 67vh #FFF, 95vw 1vh 2px 1px #fff, 35vw 75vh 2px #FFF, 44vw 47vh 1px #FFF, 1px 1px 10px 2px #FFF, 1px 1px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 1px 1px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 20vw 80vh #FFF, 37vw 78vh #fff, 17vw 69vh #FFF, 68vw 4vh 1px #FFF, 98vw 9vh 1px #FFF, 45vw 67vh #FFF, 95vw 1vh 2px #fff, 35vw 75vh 2px #FFF, 44vw 47vh 1px #FFF, 54vw 5vh 1px #FFF, 22vw 29vh 1px #FFF, 39vw 71vh 1px #FFF, 11vw 11vh #FFF, 88vw 82vh #fff;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  border-radius: 50%;
+  animation: starsFloating 30s 3s linear both infinite; }
+
+@keyframes starsFloating {
+  0% {
+    opacity: 0; }
+  10% {
+    opacity: 1; }
+  50% {
+    opacity: 0.5; }
+  80% {
+    opacity: 1; }
+  100% {
+    transform: translateY(-100vh); } }
+
 .shadow,
 .Login-button {
   position: absolute;
-  width: 180px;
+  width: 160px;
   height: 40px; }
 
 .shadow {
   animation: pulse 1.2s ease infinite;
-  background: #5effee; }
+  border: 2px solid white;
+  border-radius: 25px; }
 
 .log-in {
   display: flex;
@@ -83,25 +124,13 @@
   justify-content: center;
   padding: auto;
   height: 40px;
-  width: 180px;
-  border: none;
-  background-color: #1be1d0;
+  width: 160px;
+  border-radius: 25px;
+  background-color: white;
   font-family: 'Roboto';
   font-weight: 400;
-  color: white;
-  font-size: 20px;
+  color: opacity;
+  font-size: 16px;
   cursor: pointer;
   outline: none;
   z-index: 99; }
-
-a {
-  text-decoration: none; }
-
-.service-box {
-  height: 500px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: auto; }

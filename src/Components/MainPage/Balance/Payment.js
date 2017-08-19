@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class Payment extends Component {
   constructor(props){
@@ -30,7 +31,7 @@ export default class Payment extends Component {
             currency={'USD'}
             locale="auto"
           >
-          <button>Pay</button>
+          <RaisedButton label="Make payment" fullWidth={true} />
           </StripeCheckout>
 
         </div>

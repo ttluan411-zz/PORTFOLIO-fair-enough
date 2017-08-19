@@ -72,4 +72,16 @@ module.exports = {
     db.friends.get_friends_balance(req.params.id)
     .then(balance => res.status(200).send(balance)).catch(err => console.log(err))
   },
+  getBorrowed: (req, res, next) => {
+    console.log(req.params.id)
+    const db = req.app.get('db');
+    db.friends.get_borrowed(req.params.id)
+    .then(borrowed => res.status(200).send(borrowed)).catch(err => console.log(err))
+  }
+  // getLent: (req, res, next) => {
+  //   console.log(req.params.id)
+  //   const db = req.app.get('db');
+  //   db.friends.get_lent(req.params.id)
+  //   .then(lent => res.status(200).send(lent)).catch(err => console.log(err))
+  // }
 }
