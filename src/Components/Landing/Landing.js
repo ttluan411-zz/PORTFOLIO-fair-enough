@@ -38,20 +38,24 @@ export default class Landing extends Component {
       <div className="features-box">
         <div className="features-header">
           <h1>FEATURES</h1>
+          <div className="line"></div>
         </div>
         <div className="box left">
-          <h1>We are fairness experts</h1>
+          <h2>We are fairness experts</h2>
           <div className="divider"></div>
+          <img src={require('./deal.svg')}/>
           <p>Split household bills with roommates, figure out costs for a group trip, remember when a friend spots you for lunch.</p>
         </div>
         <div className="box mid">
-          <h1>We take care of the math you dont want to do</h1>
+          <h2>We do the math for you</h2>
           <div className="divider"></div>
+          <img src={require('./monitor.svg')}/>
           <p>Our algorithm computes the minimum number of transactions to pay effectively each person.</p>
         </div>
         <div className="box right">
-          <h1>Make payment with no cost</h1>
+          <h2>And it is free, forever!</h2>
           <div className="divider"></div>
+          <img src={require('./diamond.svg')}/>
           <p>Fairenough keeps a running total over time, so you can pay each other back in one big payment, instead of a bunch of small ones.</p>
         </div>
       </div>

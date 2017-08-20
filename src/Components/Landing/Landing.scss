@@ -37,17 +37,19 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 1400px;
-    background: linear-gradient(45deg, #B479C3,#6CD5F9);
-    overflow: hidden;
+    height: 1600px;
+    background: linear-gradient(45deg,rgba(179, 123, 196, 0.60), rgba(113, 207, 245, 0.60)), url('./coffeeshop.jpg') no-repeat ;
+    background-size: cover;
+
 }
 .header {
     @include flex-center();
     width: 100%;
     height: 260px;
     font-family: 'Josefin Sans';
-    animation: fade 0.2s;
-    font-size: 46px;
+    animation: fadein 1s;
+    font-size: 70px;
+    margin-top: 50px;
     font-weight: 100;
     color: white;
     text-shadow: 2px 2px 5px black;
@@ -67,12 +69,12 @@
 }
 .logobox {
         @include flex-center();
-          height: 200px;
+          height: 250px;
   }
 
 .button-box {
     @include flex-center();
-    height: 80px;
+    height: 360px;
     position: relative;
 
     .shadow,
@@ -119,31 +121,64 @@ a {
   width: 100%;
   padding-top: 40px;
   .box {
-    margin: 20px;
+    margin: 30px;
     height: 350px;
     width: 250px;
     border: 1px solid white;
-    .mid{
-      margin: 0 10px;
+    padding: 10px;
+    font-size: 19px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: space-between;
+    font-family: 'Josefin Sans';
+    opacity: 0.9;
+    background: rgba(white, 0.20);
+    box-shadow: 0px 0px 15px 1px #FFF;
+    color: white;
+    img {
+      position: absolute;
+      top: 40%;
+      left: 38%;
+      height: 70px;
+      width: 70px;
     }
+
   }
 }
 
 
 
 .features-header {
-  font-family: 'Open Sans';
-  font-size: 20px;
+  font-family: 'Josefin Sans';
+  font-size: 12px;
+  color: whitesmoke;
   top: 30px;
   position: absolute;
   width: 100%;
+  height: 80px;
+  align-items: center;
   display:flex;
   justify-content: center;
-  background: pink;
 }
 
+.line {
+  height:1px;
+  position: absolute;
+  bottom: 0;
+  width: 80vw;
+  background:#FFF;
+  border-bottom:1px solid #FFF;
+  opacity: 0.4;
+  // box-shadow: 0px 0px 15px 1px #FFF;
+}
 
+img {
 
+  height: 60px;
+  width: 60px;
+}
 
 
 
@@ -194,6 +229,17 @@ a {
       0px 0px 10px 2px #FFF,
       55vw 9vh #FFF,
       24vw 4vh 1px #FFF,
+      20vw 80vh #FFF,
+      90vw 10vh 2px #fff,
+      0px 0px 10px 2px #FFF,
+      55vw 9vh #FFF,
+      24vw 4vh 1px #FFF,
+      1px 1px 10px 2px #FFF,
+      0px 0px 10px 2px #FFF,
+      0px 0px 10px 2px #FFF,
+      20vw 80vh #FFF,
+      90vw 10vh 2px #fff,
+      0px 0px 10px 2px #FFF,
       1px 1px 10px 2px #FFF,
       0px 0px 10px 2px #FFF,
       20vw 80vh #FFF,
@@ -214,6 +260,16 @@ a {
       98vw 9vh 1px 1px #FFF,
       45vw 67vh #FFF,
       95vw 1vh 2px 1px #fff,
+      35vw 75vh 2px #FFF,
+      44vw 47vh 1px #FFF,
+      1px 1px 10px 2px #FFF,
+      1px 1px 10px 2px #FFF,
+      20vw 80vh #FFF,
+      90vw 10vh 2px #fff,
+      1px 1px 10px 2px #FFF,
+      55vw 9vh #FFF,
+      24vw 4vh 1px #FFF,
+      1px 1px 10px 2px #FFF,
       35vw 75vh 2px #FFF,
       44vw 47vh 1px #FFF,
       1px 1px 10px 2px #FFF,

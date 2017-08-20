@@ -29,9 +29,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 1400px;
-  background: linear-gradient(45deg, #B479C3, #6CD5F9);
-  overflow: hidden; }
+  height: 1600px;
+  background: linear-gradient(45deg, rgba(179, 123, 196, 0.6), rgba(113, 207, 245, 0.6)), url("./coffeeshop.jpg") no-repeat;
+  background-size: cover; }
 
 .header {
   display: flex;
@@ -42,8 +42,9 @@
   width: 100%;
   height: 260px;
   font-family: 'Josefin Sans';
-  animation: fade 0.2s;
-  font-size: 46px;
+  animation: fadein 1s;
+  font-size: 70px;
+  margin-top: 50px;
   font-weight: 100;
   color: white;
   text-shadow: 2px 2px 5px black; }
@@ -63,7 +64,7 @@
   align-items: center;
   justify-content: center;
   padding: auto;
-  height: 200px; }
+  height: 250px; }
 
 .button-box {
   display: flex;
@@ -71,7 +72,7 @@
   align-items: center;
   justify-content: center;
   padding: auto;
-  height: 80px;
+  height: 360px;
   position: relative; }
   .button-box .shadow,
   .button-box .Login-button {
@@ -116,22 +117,53 @@ a {
   width: 100%;
   padding-top: 40px; }
   .features-box .box {
-    margin: 20px;
+    margin: 30px;
     height: 350px;
     width: 250px;
-    border: 1px solid white; }
-    .features-box .box .mid {
-      margin: 0 10px; }
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 19px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: space-between;
+    font-family: 'Josefin Sans';
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 15px 1px #FFF;
+    color: white; }
+    .features-box .box img {
+      position: absolute;
+      top: 40%;
+      left: 38%;
+      height: 70px;
+      width: 70px; }
 
 .features-header {
-  font-family: 'Open Sans';
-  font-size: 20px;
+  font-family: 'Josefin Sans';
+  font-size: 12px;
+  color: whitesmoke;
   top: 30px;
   position: absolute;
   width: 100%;
+  height: 80px;
+  align-items: center;
   display: flex;
-  justify-content: center;
-  background: pink; }
+  justify-content: center; }
+
+.line {
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  width: 80vw;
+  background: #FFF;
+  border-bottom: 1px solid #FFF;
+  opacity: 0.4; }
+
+img {
+  height: 60px;
+  width: 60px; }
 
 .universe {
   width: 100%;
@@ -141,7 +173,7 @@ a {
 
 .universe:before {
   content: "";
-  box-shadow: 10vw 1vh #fff, 14vw 29vh 2px #FFF, 23vw 34vh 1px #FFF, 1vw 99vh 1px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 85vw 78vh #fff;
+  box-shadow: 10vw 1vh #fff, 14vw 29vh 2px #FFF, 23vw 34vh 1px #FFF, 1vw 99vh 1px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 0px 0px 10px 2px #FFF, 1px 1px 10px 2px #FFF, 0px 0px 10px 2px #FFF, 20vw 80vh #FFF, 85vw 78vh #fff;
   width: 5px;
   height: 5px;
   position: absolute;
@@ -150,7 +182,7 @@ a {
 
 .universe:after {
   content: "";
-  box-shadow: 37vw 78vh #fff, 17vw 69vh #FFF, 68vw 4vh 1px 1px #FFF, 98vw 9vh 1px 1px #FFF, 45vw 67vh #FFF, 95vw 1vh 2px 1px #fff, 35vw 75vh 2px #FFF, 44vw 47vh 1px #FFF, 1px 1px 10px 2px #FFF, 1px 1px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 1px 1px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 20vw 80vh #FFF, 37vw 78vh #fff, 17vw 69vh #FFF, 68vw 4vh 1px #FFF, 98vw 9vh 1px #FFF, 45vw 67vh #FFF, 95vw 1vh 2px #fff, 35vw 75vh 2px #FFF, 44vw 47vh 1px #FFF, 54vw 5vh 1px #FFF, 22vw 29vh 1px #FFF, 39vw 71vh 1px #FFF, 11vw 11vh #FFF, 88vw 82vh #fff;
+  box-shadow: 37vw 78vh #fff, 17vw 69vh #FFF, 68vw 4vh 1px 1px #FFF, 98vw 9vh 1px 1px #FFF, 45vw 67vh #FFF, 95vw 1vh 2px 1px #fff, 35vw 75vh 2px #FFF, 44vw 47vh 1px #FFF, 1px 1px 10px 2px #FFF, 1px 1px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 1px 1px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 35vw 75vh 2px #FFF, 44vw 47vh 1px #FFF, 1px 1px 10px 2px #FFF, 1px 1px 10px 2px #FFF, 20vw 80vh #FFF, 90vw 10vh 2px #fff, 1px 1px 10px 2px #FFF, 55vw 9vh #FFF, 24vw 4vh 1px #FFF, 1px 1px 10px 2px #FFF, 20vw 80vh #FFF, 37vw 78vh #fff, 17vw 69vh #FFF, 68vw 4vh 1px #FFF, 98vw 9vh 1px #FFF, 45vw 67vh #FFF, 95vw 1vh 2px #fff, 35vw 75vh 2px #FFF, 44vw 47vh 1px #FFF, 54vw 5vh 1px #FFF, 22vw 29vh 1px #FFF, 39vw 71vh 1px #FFF, 11vw 11vh #FFF, 88vw 82vh #fff;
   width: 4px;
   height: 4px;
   position: absolute;
