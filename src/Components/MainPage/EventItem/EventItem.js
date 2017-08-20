@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { selectEvent, getBalanceByEvent } from '../../../ducks/reducer';
+import { selectEvent, getBalanceByEvent, getSettleList } from '../../../ducks/reducer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
@@ -26,6 +26,7 @@ class EventItem extends Component {
 
   handleClick = () => {
     this.props.getBalanceByEvent(this.props.match.params.id)
+    this.props.getSettleList(this.props.match.params.id, this.props.user.userid)
   }
 
   handleChange = (value) => {
@@ -88,4 +89,4 @@ class EventItem extends Component {
 }
 export default connect((state) => {
   return state;
-},{selectEvent, getBalanceByEvent})(EventItem);
+},{selectEvent, getBalanceByEvent, getSettleList})(EventItem);

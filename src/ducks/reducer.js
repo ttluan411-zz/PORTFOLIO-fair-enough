@@ -9,6 +9,7 @@ const initialState = {
     balance: [],
     userEmails:[],
     friendGroup:[],
+    settleList: []
 }
 
 const GET_USER = 'GET_USER',
@@ -19,7 +20,8 @@ const GET_USER = 'GET_USER',
       GET_TRANSACTION = 'GET_TRANSACTION',
       GET_EMAILS = 'GET_EMAILS',
       GET_BALANCE_BY_EVENT = 'GET_BALANCE_BY_EVENT',
-      SEARCH_USER = 'SEARCH_USER'
+      SEARCH_USER = 'SEARCH_USER',
+      GET_SETTLE_LIST = 'GET_SETTLE_LIST'
 
 
 export default function (state=initialState, action){
@@ -46,8 +48,6 @@ export default function (state=initialState, action){
               userEmails: [].concat.apply([], action.payload.data.map(Object.values))
             });
         case GET_BILLS + '_FULFILLED':
-        console.log('it hit this point',action.payload.data)
-
             return Object.assign({},state,{
               billList: action.payload.data
             });
@@ -60,9 +60,12 @@ export default function (state=initialState, action){
               balance: action.payload.data
             });
         case SEARCH_USER + '_FULFILLED':
-        console.log(action.payload.data)
             return Object.assign({}, state,{
               friendGroup: [...state.friendGroup,action.payload.data[0]]
+            });
+        case GET_SETTLE_LIST + '_FULFILLED':
+            return Object.assign({}, state,{
+              settleList: action.payload.data
             })
         default:
             return state
@@ -125,19 +128,21 @@ export function getBills(i){
   }
 }
 
-//GET BALANCE
-// export function getAmountEachUserOwe(i){
-//   let promise = axios.get(`/api/main/getAmountEachUserOwe/${i}`)
-//   return {
-//     type: GET_AMOUNT_EACH_USER_OWE,
-//     payload: promise
-//   }
-// }
+
 export function getBalanceByEvent(i){
-  console.log(i)
   let promise = axios.get(`/api/main/getBalanceByEvent/${i}`)
   return {
     type: GET_BALANCE_BY_EVENT,
+    payload: promise
+  }
+}
+
+
+export function getSettleList(eventid, userid){
+  console.log(eventid, userid)
+  let promise = axios.get(`/api/main/getSettleList/${eventid}/${userid}`)
+  return {
+    type: GET_SETTLE_LIST,
     payload: promise
   }
 }

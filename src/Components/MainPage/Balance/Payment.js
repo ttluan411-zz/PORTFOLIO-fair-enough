@@ -11,8 +11,10 @@ export default class Payment extends Component {
   onToken = (token) => {
       token.card = void 0;
       console.log('token', token);
-      axios.post('http://localhost:3535/api/payment', { token, amount: 100 } ).then(response => {
-        alert('we are in business')
+      axios.post('http://localhost:3001/api/payment', { token, amount: 100 } ).then(response => {
+        alert('Thank you! Your payment has been posted')
+        // axios.post('')
+        //
       });
     }
 
@@ -31,9 +33,8 @@ export default class Payment extends Component {
             currency={'USD'}
             locale="auto"
           >
-          <RaisedButton label="Make payment" fullWidth={true} />
+          <RaisedButton label="Settle balance" fullWidth={true} />
           </StripeCheckout>
-
         </div>
       );
     }

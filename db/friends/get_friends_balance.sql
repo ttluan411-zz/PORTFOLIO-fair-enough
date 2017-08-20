@@ -1,1 +1,1 @@
-select *, lent - borrowed as Balance from friendgroup where eventid = $1
+select *, lent - borrowed as Balance from friendgroup where eventid = $1;

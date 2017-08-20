@@ -3,7 +3,6 @@ import { Route, Link } from 'react-router-dom';
 import Typist from 'react-typist';
 import Features from './Features';
 import './Landing.css';
-import './Hey-World.mp4';
 import './Features.css';
 
 export default class Landing extends Component {
@@ -20,8 +19,8 @@ export default class Landing extends Component {
       <div className="logobox">
         <Typist
           className="auto-type"
-          avgTypingSpeed={1}
-          startDelay={2500}
+          avgTypingDelay={50}
+          startDelay={1500}
         >
             Takes the trouble out of sharing expenses with anyone.
         </Typist>
@@ -34,7 +33,28 @@ export default class Landing extends Component {
                       GET STARTED
                   </div>
               </a>
-            </div>
+      </div>
+
+      <div className="features-box">
+        <div className="features-header">
+          <h1>FEATURES</h1>
+        </div>
+        <div className="box left">
+          <h1>We are fairness experts</h1>
+          <div className="divider"></div>
+          <p>Split household bills with roommates, figure out costs for a group trip, remember when a friend spots you for lunch.</p>
+        </div>
+        <div className="box mid">
+          <h1>We take care of the math you dont want to do</h1>
+          <div className="divider"></div>
+          <p>Our algorithm computes the minimum number of transactions to pay effectively each person.</p>
+        </div>
+        <div className="box right">
+          <h1>Make payment with no cost</h1>
+          <div className="divider"></div>
+          <p>Fairenough keeps a running total over time, so you can pay each other back in one big payment, instead of a bunch of small ones.</p>
+        </div>
+      </div>
     </div>
     )
   }

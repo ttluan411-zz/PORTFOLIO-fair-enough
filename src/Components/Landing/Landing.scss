@@ -20,7 +20,10 @@
   100% {
     opacity: 1; }
   }
-
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
 
 @mixin flex-center{
@@ -34,7 +37,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    height: 1400px;
     background: linear-gradient(45deg, #B479C3,#6CD5F9);
     overflow: hidden;
 }
@@ -47,7 +50,7 @@
     font-size: 46px;
     font-weight: 100;
     color: white;
-    text-shadow: 2px 2px 5px black;;
+    text-shadow: 2px 2px 5px black;
 
 }
 @keyframes pulse {
@@ -69,19 +72,94 @@
 
 .button-box {
     @include flex-center();
-    height: 200px;
+    height: 80px;
+    position: relative;
+
+    .shadow,
+    .Login-button{
+        animation: fadein 2s;
+        position: absolute;
+        width: 160px;
+        height: 40px;
+      }
+    .shadow {
+      animation: pulse 1.2s ease infinite;
+      animation-delay: 5.5s !important;
+      border: 2px solid white;
+      border-radius: 25px
+    }
+    .log-in{
+        @include flex-center();
+        height: 40px;
+        width:160px;
+        border-radius: 25px;
+        background-color: white;
+        font-family: 'Roboto';
+        font-weight: 400;
+        color: opacity;
+        font-size: 16px;
+        cursor: pointer;
+        outline: none;
+        z-index: 99;
+        }
+
 }
 
 a {
   text-decoration: none;
 }
+.features-box {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: auto;
+  display: flex;
+  height: 600px;
+  width: 100%;
+  padding-top: 40px;
+  .box {
+    margin: 20px;
+    height: 350px;
+    width: 250px;
+    border: 1px solid white;
+    .mid{
+      margin: 0 10px;
+    }
+  }
+}
+
+
+
+.features-header {
+  font-family: 'Open Sans';
+  font-size: 20px;
+  top: 30px;
+  position: absolute;
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  background: pink;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 //DOTS
 .universe {
-  width:100vw;
-  height: 100vh;
+  width:100%;
+  height: 1200px;
   display: block;
   position: absolute;
 }
@@ -164,7 +242,7 @@ a {
     height: 4px;
     position: absolute;
     border-radius: 50%;
-    animation: starsFloating 30s 3s linear both infinite;
+    animation: starsFloating 30s 3s linear backwards infinite;
   }
 
 
@@ -187,29 +265,3 @@ a {
   }
 
 // PURSING BUTTON
-.shadow,
-.Login-button {
-    position: absolute;
-    width: 160px;
-    height: 40px;
-}
-.shadow {
-  animation: pulse 1.2s ease infinite;
-  border: 2px solid white;
-  border-radius: 25px
-}
-
-    .log-in{
-        @include flex-center();
-        height: 40px;
-        width:160px;
-        border-radius: 25px;
-        background-color: white;
-        font-family: 'Roboto';
-        font-weight: 400;
-        color: opacity;
-        font-size: 16px;
-        cursor: pointer;
-        outline: none;
-        z-index: 99;
-        }

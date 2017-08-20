@@ -133,7 +133,7 @@ import Payment from './Payment';
           />
             </div>
           <div className="button-div">
-          <Payment balance={balance} user={user}/>
+          <Payment balance={balance} user={user} />
           </div>
       </div>
 
