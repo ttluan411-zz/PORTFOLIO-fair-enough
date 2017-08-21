@@ -1,0 +1,14 @@
+.wrapper {
+  height: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .wrapper .button-box {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 40px; }
+
+.search {
+  width: px; }

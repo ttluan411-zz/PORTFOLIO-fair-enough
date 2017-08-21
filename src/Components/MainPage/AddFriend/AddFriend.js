@@ -7,7 +7,7 @@ import SearchBar from 'material-ui-search-bar';
 import { searchUserByEmail } from '../../../ducks/reducer';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
-
+import './AddFriend.css'
 class AddFriend extends Component {
   constructor(props){
     super(props);
@@ -57,8 +57,8 @@ class AddFriend extends Component {
       }
       console.log(this.props.friendGroup)
       return(
-        <div>
-        <SearchBar
+        <div className="wrapper">
+        <SearchBar className="search"
           dataSource = {this.props.userEmails}
           value = {this.state.inputText}
           onChange={this.handleChange}
@@ -81,8 +81,10 @@ class AddFriend extends Component {
          </Chip>
        )
        })}
-       <RaisedButton label="Add" primary={true} onClick={this.handleClick}/>
-       <RaisedButton label="Done" secondary={true}  onClick={this.handleSwitchTap} />
+        <div className="button-box">
+          <RaisedButton label="Add" primary={true} onClick={this.handleClick}/>
+          <RaisedButton label="Done" secondary={true}  onClick={this.handleSwitchTap} />
+        </div>
         </div>
        )
     }

@@ -79,7 +79,7 @@ app.get('/api/main', function(req,res){
 //ENDPOINTS
 app.post('/api/main/createEvent', controller.createEvent)
 app.post('/api/main/createBill', controller.createBill)
-
+app.post('/api/main/updateBalance/:eventid/:lenderid/:borrowerid/:amount', controller.updateBalance)
 
 app.get('/api/main/getEvent', controller.getEvents)
 app.get('/api/main/getEvent/:id',controller.selectEvent)

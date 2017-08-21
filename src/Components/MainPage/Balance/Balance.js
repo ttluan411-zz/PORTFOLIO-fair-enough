@@ -108,13 +108,13 @@ import Payment from './Payment';
  }
 
   render(){
-    const  {balance,getBalanceByEvent, user } = this.props
+    const  {balance,getBalanceByEvent, user, settleList, friendList } = this.props
     console.log(this.props)
 
     return(
       <div className="Balance-wrapper">
 
-          <div className = "chart">
+        <div className = "chart">
           <Bar
           	data={this.state.chartData}
           	width={30}
@@ -131,9 +131,10 @@ import Payment from './Payment';
               }
           	}}
           />
-            </div>
+          </div>
+
           <div className="button-div">
-          <Payment balance={balance} user={user} />
+            <Payment />
           </div>
       </div>
 

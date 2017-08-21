@@ -29,7 +29,6 @@ module.exports = {
     .then((created)=> {
         db.bills.update_lent_amount([req.body.paidUserId, req.body.amount - average])
         .then(updated_lent => {
-          console.log('toi day')
           req.body.sharingFriend.forEach((person)=> {
             if(person !== req.body.paidUserId){
 
@@ -74,16 +73,16 @@ module.exports = {
   getSettleList: (req, res, next) => {
     console.log('here',req.params)
     const db = req.app.get('db');
-    db.bills.get_settle(req.params.eventid, req.params.userid)
+    db.bills.get_settle([req.params.eventid, req.params.userid])
     .then(data => {
       console.log('hey',data)
       res.status(200).send(data)
     }).catch(err => console.log(err))
+  },
+  updateBalance: (req, res, next) => {
+    console.log(req.params)
+    const db = req.app.get('db');
+    db.friends.update_balance([req.params.eventid, req.params.lenderid, req.params.borrowerid, req.params.amount])
+    .then(bal => res.status(200).send('send ve')).catch(err => console.log(err))
   }
-  // getLent: (req, res, next) => {
-  //   console.log(req.params.id)
-  //   const db = req.app.get('db');
-  //   db.friends.get_lent(req.params.id)
-  //   .then(lent => res.status(200).send(lent)).catch(err => console.log(err))
-  // }
 }

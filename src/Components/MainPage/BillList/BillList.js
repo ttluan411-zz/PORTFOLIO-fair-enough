@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getBills } from '../../../ducks/reducer';
 import {List, ListItem} from 'material-ui/List';
-import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
+import {grey400, darkBlack, lightBlack,tealA400, red400} from 'material-ui/styles/colors';
 
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -63,8 +63,8 @@ class BillList extends Component {
                 primaryTogglesNestedList={true}
                 secondaryText={
                   <p>
-                    <span style={{color: darkBlack}}>{el.bills.createtime}</span><br/>
-                    {el.bills.amount}
+                    <span style={{color: tealA400}}>${el.bills.amount}</span><br/>
+                    {el.bills.createtime}
                   </p>
                 }
                 secondaryTextLines={2}
@@ -80,7 +80,8 @@ class BillList extends Component {
                           key={index}
                           secondaryText={
                             <p>
-                             {borrower.givenname} owes {lender.givenname} : {transaction.amount}
+                             {borrower.givenname} owes {lender.givenname} :
+                             <span style={{color:red400}}>${transaction.amount}</span>
                            </p>
                           }
                         />

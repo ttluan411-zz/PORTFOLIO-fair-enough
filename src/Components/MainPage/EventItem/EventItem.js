@@ -42,8 +42,10 @@ class EventItem extends Component {
 
     const styles = {
       title: {
-        cursor: 'pointer'
-      }
+      
+      },
+
+
     }
     // console.log( responseData, this.props.match.params.id)
     const eventId = this.props.match.params.id,
