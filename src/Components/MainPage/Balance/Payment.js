@@ -4,7 +4,8 @@ import axios from 'axios';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { getBalanceByEvent, getSettleList } from '../../../ducks/reducer';
-
+import {red400} from 'material-ui/styles/colors';
+import {List, ListItem} from 'material-ui/List';
 class Payment extends Component {
   constructor(props){
     super(props);
@@ -41,26 +42,32 @@ class Payment extends Component {
     }
 
     render() {
+      console.log(this.state.isSettled)
       const  {balance,getBalanceByEvent, user, settleList, friendList } = this.props
+      let total = 0.00
       return (
         <div>
         <div className="Your-balance">
+        <List>
           {!this.state.isSettled ? settleList.map((el,i) => {
-            let lender = el.lender
-
+            console.log(total, el.sum)
+            total += parseInt(el.sum)
+            let lenderid = el.lender
+            let lender = friendList.filter((e)=> e.userid == lenderid)[0]
+            console.log(lender)
             return (
-              <ul>
-                <li>
-                  You owes {lender}: ${el.sum}
-                </li>
-              </ul>
+                <ListItem>
+                  <p>You owes {lender.givenname} : </p><p style={{color:"#01e0df"}}> ${el.sum}</p>
+                </ListItem>
+
             )
           }) : null}
+        </List>
         </div>
           <StripeCheckout
             token={this.onToken}
             stripeKey={ 'pk_test_qXoP227DvOgZzVEIhx0OqSLG' }
-            amount={10345}
+            amount={total * 100}
             currency={'USD'}
             locale="auto"
           >

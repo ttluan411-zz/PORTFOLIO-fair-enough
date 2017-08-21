@@ -63,7 +63,7 @@ class BillList extends Component {
                 primaryTogglesNestedList={true}
                 secondaryText={
                   <p>
-                    <span style={{color: tealA400}}>${el.bills.amount}</span><br/>
+                    <span style={{color: "#01e0df"}}>${el.bills.amount}</span><br/>
                     {el.bills.createtime}
                   </p>
                 }

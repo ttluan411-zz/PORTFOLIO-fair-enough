@@ -20,7 +20,7 @@ export default class Landing extends Component {
         <Typist
           className="auto-type"
           avgTypingDelay={50}
-          startDelay={1500}
+          startDelay={3000}
         >
             Takes the trouble out of sharing expenses with anyone.
         </Typist>

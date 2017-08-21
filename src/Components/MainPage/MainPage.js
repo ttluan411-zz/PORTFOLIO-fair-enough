@@ -12,6 +12,9 @@ class MainPage extends Component {
     this.props.getUser()
   }
     render(){
+      const style = {
+        marginRight: 20,
+      };
       const{
         user
       } = this.props
@@ -24,7 +27,11 @@ class MainPage extends Component {
                     <div className="profile-box">
                       <img src={user.picture} />
                       <p>Hi {!user.givenname ? null : user.givenname }!</p>
-                      <div className="line"></div>
+                      <div className="balance-info">
+                        <div className="info"></div>
+                        <div className="info"></div>
+                        <div className="info"></div>
+                      </div>
                     </div>
 
                 </div>
