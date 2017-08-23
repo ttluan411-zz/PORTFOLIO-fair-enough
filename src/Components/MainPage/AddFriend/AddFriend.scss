@@ -1,23 +1,23 @@
-@mixin flex-center{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 
 .wrapper {
   height: 600px;
   width: 100%;
-  @include flex-center();
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .Chips {
+    width: 900px;
+    height: 48px;
+    display: flex;
+  }
   .button-box {
     display: flex;
     flex-direction: row;
-    width: 400px;
+    justify-content: space-between;
+    width: 420px;
     height: 40px;
+    margin: auto;
   }
-}
-
-
-.search {
-  width: px;
 }

@@ -14,7 +14,8 @@ import AutoComplete from 'material-ui/AutoComplete';
 
 const styles = {
   customWidth: {
-    width: 200,
+    width: 600,
+    margin: 12,
   },
 };
 const button_style = {
@@ -80,12 +81,14 @@ class AddBill extends Component {
           floatingLabelText="Enter a bill"
           value={this.state.billName}
           onChange={this.handleChangeBillName}
+          style={styles.customWidth}
         /><br />
         <TextField
           hintText="100.00"
           floatingLabelText="Enter amount"
           value={this.state.amount}
           onChange={this.handleChangeBillAmount}
+          style={styles.customWidth}
         /><br />
         <SelectField
           floatingLabelText="Currency"
@@ -99,7 +102,7 @@ class AddBill extends Component {
           <MenuItem value={"¥"} primaryText="¥" />
         </SelectField><br />
         <SelectField
-          floatingLabelText="Paid by"
+          floatingLabelText="Paid by:"
           value={this.state.paidUserId}
           onChange={this.handleChange2}
           style={styles.customWidth}
@@ -114,10 +117,11 @@ class AddBill extends Component {
 
         <SelectField
           multiple={true}
-          hintText="Select name"
+          hintText="Paid for:"
           value={this.state.sharingFriend}
           onChange={this.handleChange4}
           selectionRenderer={this.selectionRenderer}
+          style={styles.customWidth}
         >
           {friendGroup.map((user,i) => (
             <MenuItem
@@ -126,6 +130,7 @@ class AddBill extends Component {
               checked={this.state.sharingFriend.indexOf(user.value) > -1}
               value={user.userid}
               primaryText={user.givenname}
+
             />
           ))}
         </SelectField>
@@ -140,6 +145,7 @@ class AddBill extends Component {
         </SelectField>
         <br/>
         <DatePicker
+          style={styles.customWidth}
           className="date-input"
           hintText="Pick date"
           container="inline"

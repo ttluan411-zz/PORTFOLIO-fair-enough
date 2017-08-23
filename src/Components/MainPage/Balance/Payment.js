@@ -28,11 +28,11 @@ class Payment extends Component {
                 isSettled: true
               })
               this.props.getBalanceByEvent(this.props.eventSelected[0].eventid)
+
             })
           )
         })
-
-        alert('abc')
+        axios.delete(`/api/main/deleteTransaction/${this.props.eventSelected[0].eventid}/${this.props.user.userid}`)
       });
     }
 
@@ -42,7 +42,7 @@ class Payment extends Component {
     }
 
     render() {
-      console.log(this.state.isSettled)
+      console.log(this.props)
       const  {balance,getBalanceByEvent, user, settleList, friendList } = this.props
       let total = 0.00
       return (

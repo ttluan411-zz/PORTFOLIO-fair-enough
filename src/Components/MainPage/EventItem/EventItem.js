@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { selectEvent, getBalanceByEvent, getSettleList } from '../../../ducks/reducer';
+import { selectEvent, getBalanceByEvent, getSettleList, getBills } from '../../../ducks/reducer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
@@ -11,6 +11,8 @@ import BillList from '../BillList/BillList';
 import Balance from '../Balance/Balance';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
+import { Link } from 'react-router-dom';
+
 import './EventItem.css';
 class EventItem extends Component {
   constructor(props) {
@@ -28,6 +30,10 @@ class EventItem extends Component {
     this.props.getBalanceByEvent(this.props.match.params.id)
     this.props.getSettleList(this.props.match.params.id, this.props.user.userid)
   }
+  handlePullBills = () => {
+    this.props.getBills(this.props.match.params.id)
+    console.log('hey I got some bills')
+  }
 
   handleChange = (value) => {
     this.setState({
@@ -42,7 +48,7 @@ class EventItem extends Component {
 
     const styles = {
       title: {
-      
+
       },
 
 
@@ -55,7 +61,12 @@ class EventItem extends Component {
       <div className="eventItem-wrapper">
       <AppBar
         title={ <span style={styles.title} >{!responseData[0] ? null :responseData[0].eventname } </span> }
-        iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+        iconElementLeft={
+          <IconButton>
+            <Link to={`/main#_=_`}>
+              <NavigationClose />
+            </Link>
+          </IconButton>}
         iconElementRight={<FlatButton label="Edit" />}
       />
 
@@ -65,7 +76,7 @@ class EventItem extends Component {
         >
           <Tab label="Add Friends" value={0} />
           <Tab label="Add Expenses" value={1} />
-          <Tab label="Expense List" value={2} />
+          <Tab label="Expense List" value={2}  onClick={this.handlePullBills}/>
           <Tab label="Balance" value={3} onClick={this.handleClick} />
         </Tabs>
         <SwipeableViews
@@ -91,4 +102,4 @@ class EventItem extends Component {
 }
 export default connect((state) => {
   return state;
-},{selectEvent, getBalanceByEvent, getSettleList})(EventItem);
+},{selectEvent, getBalanceByEvent, getSettleList, getBills})(EventItem);

@@ -123,10 +123,10 @@ import Payment from './Payment';
           		maintainAspectRatio: false,
               layout: {
                 padding: {
-                  left: 40,
-                  right: 40,
-                  bottom: 40,
-                  top: 40
+                  left: 20,
+                  right: 20,
+                  bottom: 20,
+                  top: 20
                 }
               }
           	}}
