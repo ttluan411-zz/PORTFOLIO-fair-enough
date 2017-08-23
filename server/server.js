@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 , bodyParser = require('body-parser')
 , session = require('express-session')
@@ -9,10 +10,11 @@ const express = require('express')
 , port = config.PORT
 , MASSIVE_URI = config.MASSIVEURI
 , app = express()
-, key=require('./key')
-,stripe = require('stripe')(key.secret_key)
+, stripe = require('stripe')(process.env.secret_key)
 , controller = require(__dirname + '/controllers/controller')
 
+console.log(process.env)
+app.use(express.static(`${__dirname}/../build`))
 app.use(bodyParser.json());
 app.use(cors());
 app.use(session({
@@ -22,6 +24,7 @@ app.use(session({
 }));
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 massive(MASSIVE_URI)
 .then( db => {
@@ -33,10 +36,10 @@ app.listen(port, console.log(`listening on port ${port}`));
 
 //SET UP PASSPORT
 passport.use(new Auth0Strategy({
-  domain: key.domain,
-  clientID: key.clientID,
-  clientSecret: key.clientSecret,
-  callbackURL: 'http://localhost:3001/auth/callback'
+  domain: process.env.domain,
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
+  callbackURL: '/#/auth/callback'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
   //GO TO DB TO FIND AND CREATE USER
   let db = app.get('db')

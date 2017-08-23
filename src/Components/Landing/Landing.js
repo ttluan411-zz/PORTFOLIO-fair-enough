@@ -28,7 +28,7 @@ export default class Landing extends Component {
       </div>
       <div className="button-box">
               <div className="shadow"></div>
-              <a className="Login-button" href="http://localhost:3001/auth">
+              <a className="Login-button" href={process.env.REACT_APP_LOGIN}>
                   <div className="log-in">
                       GET STARTED
                   </div>

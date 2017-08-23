@@ -17,7 +17,7 @@ class Payment extends Component {
   onToken = (token) => {
       token.card = void 0;
       console.log('token', token);
-      axios.post('http://localhost:3001/api/payment', { token, amount: 100 } ).then(response => {
+      axios.post('/api/payment', { token, amount: 100 } ).then(response => {
         this.props.settleList.map((el,i) => {
           console.log('chay loop')
           return (
