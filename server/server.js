@@ -96,6 +96,8 @@ app.get('/api/main/getBalanceByEvent/:id', controller.getBalanceByEvent)
 app.get('/api/main/getSettleList/:eventid/:userid', controller.getSettleList)
 
 
+app.delete('/api/main/deleteTransaction/:eventid/:borrowerid', controller.deleteTransaction)
+
 
 // app.get('/api/main/signout', funtion(req,res){
 //   req.logout();

@@ -22,3 +22,4 @@ yarn-error.log*
 
 stripe_key.js
 .env
+.env.prod

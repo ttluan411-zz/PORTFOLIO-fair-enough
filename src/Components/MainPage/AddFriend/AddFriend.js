@@ -64,10 +64,11 @@ class AddFriend extends Component {
           onChange={this.handleChange}
           onRequestSearch={() => console.log('onRequestSearch')}
           style={{
-           margin: '10px auto',
-           maxWidth: 600
+           margin: '200px auto 20px auto',
+           minWidth: 600
           }}
         />
+        <div className="Chips">
         {this.props.friendGroup.map((el,i) => {
           return (
           <Chip
@@ -81,6 +82,7 @@ class AddFriend extends Component {
          </Chip>
        )
        })}
+       </div>
         <div className="button-box">
           <RaisedButton label="Add" primary={true} onClick={this.handleClick}/>
           <RaisedButton label="Done" secondary={true}  onClick={this.handleSwitchTap} />

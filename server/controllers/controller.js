@@ -84,5 +84,11 @@ module.exports = {
     const db = req.app.get('db');
     db.friends.update_balance([req.params.eventid, req.params.lenderid, req.params.borrowerid, req.params.amount])
     .then(bal => res.status(200).send('send ve')).catch(err => console.log(err))
+  },
+  deleteTransaction: (req, res, next) => {
+    console.log(req.params.eventid, req.params.borrowerid)
+    const db = req.app.get('db');
+    db.bills.delete_transaction(req.params.eventid, req.params.borrowerid)
+    .then(data => res.status(200).send(data)).catch(err => console.log(err))
   }
 }

@@ -12,8 +12,8 @@ class EventList extends Component {
   render() {
     const styles = {
         width: '1000px',
-        background: 'rgba(255,255,255,0.5)',
-        boxShadow: '1px 1px 10px 1px rgba(0,0,0,0.4)',
+        background: 'rgba(255,255,255,0.9)',
+        boxShadow: '1px 1px 5px 5px rgba(0,0,0,0.2)',
         borderRadius: '10px',
         marginTop: '20px',
     };

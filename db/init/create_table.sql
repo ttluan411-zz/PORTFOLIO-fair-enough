@@ -72,6 +72,12 @@
 -- --
 -- INSERT INTO users (auth0Id, givenName, familyName, email, profileName, picture)
 -- VALUES
+-- ('nasd1234', 'George', 'Lopez','george_the_tacos_boy_MX@gmail.com', 'timmy','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('na635', 'Im', 'Khem','imkhem@gmail.com', 'IK','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('n34ggh1234', 'Huy', 'Dang','dang_it_huy@gmail.com', 'HuyHuy','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('nasd12324454', 'Ashley', 'Schuette','ashleyschuette@gmail.com', 'ashash','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('jdf3', 'Johanna', 'Staedel','JoJo@gmail.com', 'jojo','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('n34ggh12245f34', 'Mason', 'Galland','masongalland@gmail.com', 'masonmason','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
 -- ('nasd1234', 'George', 'Lopez','george@gmail.com', 'timmy','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
--- ('na635', 'Im', 'Khem','Im@gmail.com', 'IK','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
--- ('n34ggh1234', 'Huy', 'Dang','Huydang@gmail.com', 'HuyHuy','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png')
+-- ('na5625965', 'Chris', 'Wilson','Wilson@gmail.com', 'wilsonwilson','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png'),
+-- ('2dn34ggh1234', 'Preston', 'Mecham','Preston@gmail.com', 'PrestonMecham','http://www.stickpng.com/assets/thumbs/5845e5e9fb0b0755fa99d7e5.png')
