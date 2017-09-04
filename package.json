@@ -32,7 +32,14 @@
     "react-typist": "^1.1.1",
     "redux": "^3.7.2",
     "redux-promise-middleware": "^4.3.0",
-    "stripe": "^4.24.0"
+    "stripe": "^4.24.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "massive": "^3.1.0",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.6.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

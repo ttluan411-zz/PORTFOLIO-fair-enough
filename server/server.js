@@ -18,7 +18,7 @@ app.use(express.static(`${__dirname}/../build`))
 app.use(bodyParser.json());
 app.use(cors());
 app.use(session({
-  secret: 'secret',
+  secret: 'whatevahdoesntmattahh',
   resave: false,
   saveUninitialized: true
 }));
@@ -26,12 +26,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-massive(MASSIVE_URI)
+massive(process.env.CONNECTION_STRING)
 .then( db => {
   app.set('db', db);
   db.init.create_table();
 }).catch(err => console.log(err))
-app.listen(port, console.log(`listening on port ${port}`));
+app.listen(process.env.SERVER_PORT, console.log(`listening on port ${process.env.SERVER_PORT}`));
 
 
 //SET UP PASSPORT
@@ -39,7 +39,7 @@ passport.use(new Auth0Strategy({
   domain: process.env.domain,
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
-  callbackURL: '/#/auth/callback'
+  callbackURL: '/auth/callback'
 }, function(accessToken, refreshToken, extraParams, profile, done) {
   //GO TO DB TO FIND AND CREATE USER
   let db = app.get('db')
@@ -66,7 +66,7 @@ passport.use(new Auth0Strategy({
 }));
 
 app.get('/auth/', passport.authenticate('auth0'))
-app.get('/auth/callback', passport.authenticate('auth0', {successRedirect: 'http://localhost:3000/main'}))
+app.get('/auth/callback', passport.authenticate('auth0', {successRedirect: process.env.MAIN_PAGE}))
 
 passport.serializeUser(function(profileToSession, done) {
   done(null, profileToSession); // PUTS 2ND ARGUMENT ON SESSION
@@ -142,3 +142,8 @@ app.post('/api/payment', function(req, res, next){
   // }
 });
 });
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '..','build','index.html'));
+})
