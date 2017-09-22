@@ -34,6 +34,20 @@ export default class Landing extends Component {
                   </div>
               </a>
       </div>
+      <div className="demo-login">
+        <p>
+        <li>
+          Welcome to Fair Enough, a web app that allows you to share expenses, split bills with anyone. It was built in React, Redux, NodeJS, ChartJS and PostgreSQL with Material UI for certain UI elements.
+        </li>
+        <li>
+          To login as a user, click 'Get Started'. You can use our dummy account using the following credentials:
+        </li>
+        <br/>
+          fairenoughtest AT gmail DOT com
+          <br/>
+          passwordstring
+        </p>
+      </div>
 
       <div className="features-box">
         <div className="features-header">

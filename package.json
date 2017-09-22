@@ -10,7 +10,7 @@
     "chart.js": "^2.6.0",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
-    "express": "^4.15.3",
+    "express": "^4.15.4",
     "express-session": "^1.15.5",
     "massive": "^3.1.0",
     "material-ui": "^0.18.7",
@@ -25,6 +25,7 @@
     "react-chartjs-2": "^2.5.8",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.10",
     "react-stripe-checkout": "^2.6.3",
     "react-swipeable-views": "^0.12.5",
@@ -32,27 +33,20 @@
     "react-typist": "^1.1.1",
     "redux": "^3.7.2",
     "redux-promise-middleware": "^4.3.0",
-    "stripe": "^4.24.0",
-    "body-parser": "^1.17.2",
-    "cors": "^2.8.4",
-    "express": "^4.15.4",
-    "express-session": "^1.15.5",
-    "massive": "^3.1.0",
-    "passport": "^0.3.2",
-    "passport-auth0": "^0.6.0"
+    "stripe": "^4.24.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "now-start": "node server/server.js",
+    "deploy": "now --public --dotenv=.env.prod -d"
   },
-  "devDependencies": {
-    "node-sass": "^4.5.3",
-    "nodemon": "^1.11.0"
+  "now": {
+    "alias": "fairenough"
   },
   "proxy": "http://localhost:3001/"
 }
