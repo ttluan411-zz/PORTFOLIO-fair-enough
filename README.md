@@ -1,2 +1,3 @@
 # PORTFOLIO-fair-enough
-This is [live link](https://splitapp-crhjkalycq.now.sh/) 
+* [live link](https://splitapp-crhjkalycq.now.sh/) 
+* [walkthrough video](https://youtu.be/ipP2y2M4yxs)
